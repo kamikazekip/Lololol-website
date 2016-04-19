@@ -142,12 +142,13 @@ module.exports = function($scope, $state, $lololol, $timeout, $window, $sce) {
 		});
 	}
 
-	$scope.keyPressed = function($event){
-		console.log($event);
-		if ($event.keyCode === 32 || $event.charCode === 32) {
+	$scope.keyPressed = function($event) {
+		console.log("KEYDOWN");
+        if ($event.keyCode === 32 || $event.charCode === 32) {
         	$scope.spacebar();
         }
 	}
+	
 
 	$scope.spacebar = function(){
 		console.log($scope.videoPaused);
@@ -162,6 +163,7 @@ module.exports = function($scope, $state, $lololol, $timeout, $window, $sce) {
 
 	$scope.$on('$viewContentLoaded', function(event) {
 		$scope.resize();
+		$('.keyboardHandler').keydown($scope.keyPressed);
 	});
 
 	$scope.$on('youtube.player.paused', function ($event, player) {
