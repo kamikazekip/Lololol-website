@@ -1,0 +1,35 @@
+<div ui-view ng-keypress="keyPressed($event)">
+	<nav class="nav-fillpath">
+		<a ng-click="previous();" class="prev">
+			<span class="icon-wrap"></span>
+			<h3 class="singleSleeve">Previous</h3>
+		</a>
+		<a ng-click="next();" class="next">
+			<span class="icon-wrap"></span>
+			<h3 class="singleSleeve">Next</h3>
+		</a>
+	</nav>
+	<div id="mainVPdiv" class="main-video-player-div">
+		<youtube-video 	id="mainVP" 
+						class="main-video-player" 
+						video-id="currentVideo.youtube_embed"
+						player="youtube_player"
+						player-vars="youtube_options"></youtube-video>
+	</div>
+	<div class="tourbar">
+	  	<div id="tourbar-actual">
+	  		<div 	ng-repeat="video in videos track by video.id" class="tourbar-point" 
+	  				ng-click="select_video(video);"
+	  				ng-mouseover="tourbar_point_hover(video)" 
+	  				ng-mouseleave="tourbar_point_hover_out(video)"
+	  				ng-attr-id="tourbar-point-{{video.id }}"
+	  				ng-class="{tourbarpointactive: video.id == currentVideo.id}"
+	  				on-last-repeat>
+	  		</div>
+	  </div>
+	</div>
+	<div id="videothumb">
+  		<div id="videothumbtitle">#Title</div>
+  		<img id="videothumbnail" src="http://img.youtube.com/vi/TC6JhvM0jWM/0.jpg" />
+  	</div>
+</div>

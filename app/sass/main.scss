@@ -1,0 +1,353 @@
+//Vars
+$white-imperfect:             #ECF0F1;
+
+$primary-background-color: 		$white-imperfect;
+
+$primary-font-family: 		    Pacifico;
+$primary-font-size:				    20;
+$primary-font-color:          black;
+
+$secondary-font-family:       wtf;
+$secondary-font-size:         20;
+$secondary-font-color:        black;
+
+$large-font-size:             30;
+
+$pair-button-height: 			    50px;                  
+
+@mixin primary-font-mixin() 
+{
+	  font-family: $primary-font-family;
+  	font-size: $primary-font-size;
+    color: $primary-font-color;
+}
+
+$border-radius: 700px;
+@mixin rounded-border(){
+  border-radius: $border-radius $border-radius $border-radius $border-radius;
+    -moz-border-radius: $border-radius $border-radius $border-radius $border-radius;
+    -webkit-border-radius: $border-radius $border-radius $border-radius $border-radius;
+}
+
+@font-face {
+  font-family: 'SingleSleeve';
+  src: url('../fonts/SingleSleeve/SingleSleeve.woff') format('woff'),
+       url('../fonts/SingleSleeve/SingleSleeve.ttf') format('truetype'),
+       url('../fonts/SingleSleeve/SingleSleeve.svg#SingleSleeve') format('svg'),
+       url('../fonts/SingleSleeve/SingleSleeve.eot'),
+       url('../fonts/SingleSleeve/SingleSleeve.woff2') format('woff2'),
+       url('../fonts/SingleSleeve/SingleSleeve.eot?#iefix') format('embedded-opentype');
+}
+
+
+@mixin secondary-font-mixin()
+{
+    font-family: $secondary-font-family;
+    font-size:  $secondary-font-size;
+    color: $secondary-font-color;
+}
+
+
+//Mixins
+@mixin primary() 
+{
+  	background-color: $primary-background-color;
+  	@include primary-font-mixin();
+}
+
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	@include primary();
+}
+
+html {
+	body {
+		margin: 0px;
+	}
+}
+
+$size-animation: 0.5s;
+$press-animation: 0.13s;
+
+$button-animation-durations: 
+							all $press-animation,
+							left $size-animation, 
+							width $size-animation, 
+							height $size-animation, 
+							font-size $size-animation,
+              opacity 1.0s,
+							box-shadow 0.5s,
+							border-radius 0.5s,
+							color 0.5s;
+
+.singleSleeve {
+  font-family: SingleSleeve;
+}
+
+.animate
+{
+	transition: $button-animation-durations;
+	-webkit-transition: $button-animation-durations;
+}
+
+.action-button
+{
+	opacity: 0.4;
+	position: absolute;
+	padding: 0px;
+	border-radius: 10px;
+	font-family: 'Pacifico', cursive;
+	font-size: 150px;
+	float: left;
+	color: #FFF;
+	text-decoration: none;
+	width: 50%;
+	top: 30%;
+	text-align: center;	
+	vertical-align: middle;
+}
+
+.blue
+{
+	background-color: #3498DB;
+	border-bottom: $pair-button-height solid #2980B9;
+	text-shadow: 0px -2px #2980B9;
+	left: 25%;
+	right: 25%;
+}
+
+.blue:hover{
+  opacity: 1;
+	-webkit-box-shadow: 0px 0px 171px -5px rgba(255,0,255,1);
+	-moz-box-shadow: 0px 0px 171px -5px rgba(255,0,255,1);
+	box-shadow: 0px 0px 171px -5px rgba(255,0,255,1);
+	@include rounded-border();
+}
+
+.action-button:active
+{
+	transform: translate(0px, $pair-button-height);
+  -webkit-transform: translate(0px, $pair-button-height);
+	border-bottom: 0px solid #2980B9;
+}
+
+$tourbar-width:         82%;
+$tourbar-point-width:   25px;
+$bar:                   5px;
+
+$barColor:              #888;
+$primary-ui-color:      tomato;
+
+/* Tooltip */
+
+.tourbar {
+  width: $tourbar-width;
+  
+  position: absolute;
+  left: 50% - ($tourbar-width / 2);
+  top: 95%;
+}
+
+#tourbar-actual {
+  position: relative;
+  background: $barColor;
+  height: $bar;
+  width: 100%;
+}
+
+.tourbar-point {
+  border-radius: $tourbar-point-width;
+  display: block;
+  background: $primary-ui-color;
+  position: absolute;
+  top: 0 - ($tourbar-point-width / 2) + ($bar / 2);
+  height: $tourbar-point-width;
+  width: $tourbar-point-width;
+  z-index: 10;
+  
+  $transition: all 0.1s linear;
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  transition: $transition;
+  cursor: pointer;
+  
+  &:hover {
+    $size: 2.0;
+    -webkit-transform: scale($size);
+    -moz-transform: scale($size);
+    -ms-transform: scale($size);    
+    -o-transform: scale($size);        
+    transform: scale($size);
+  }
+}
+
+$activeRingWidth: 5px;
+
+.tourbarpointactive {
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 0px $activeRingWidth $primary-ui-color;
+  -moz-box-shadow:    0px 0px 0px $activeRingWidth $primary-ui-color;
+  box-shadow:         0px 0px 0px $activeRingWidth $primary-ui-color;
+  height: $tourbar-point-width - $activeRingWidth;
+  width: $tourbar-point-width - $activeRingWidth;
+  top: -8.5px;
+
+  &:hover {
+    $size: 1.75;
+    -webkit-transform: scale($size);
+    -moz-transform: scale($size);
+    -ms-transform: scale($size);    
+    -o-transform: scale($size);        
+    transform: scale($size);
+  }
+}
+
+.point-1 {
+  left: 0;
+}
+
+.point-2 {
+  left: 33%;
+}
+
+.point-3 {
+  left: 66%;
+}
+
+.point-4 {
+  left: 100%;
+}
+
+.start-video { 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    background-size: cover;
+}
+
+$outline-width: 4px;
+
+.main-video-player-div {
+  outline: $outline-width solid $primary-ui-color;
+  position: absolute;
+  background-color: #000;
+  top: 10.5%;
+  left: 5px;
+  height: 74%;
+  width: 2px;
+}
+
+.main-video-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+$thumbnailWidth: 300px;
+$thumbnailPadding: 10px;
+$thumbnailColor: white;
+
+
+#videothumb {
+  outline: $outline-width solid $primary-ui-color;
+  position: absolute;
+  background-color: $thumbnailColor;
+  text-align: center;
+  opacity: 0;
+}
+
+$triangleWeight: 30px;
+
+#videothumb:after, 
+#videothumb:before {
+  border: solid transparent;
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 0;
+  height: 0;
+}
+    
+#videothumb:after {
+  border-color: rgba(255, 255, 255, 0);
+  border-top-color: $thumbnailColor;
+  border-width: $triangleWeight;
+  
+}
+#videothumb:before {
+  border-color: rgba(113, 158, 206, 0);
+  border-top-color: $primary-ui-color;
+  border-width: $triangleWeight + ($outline-width * 1.5);
+}
+
+#videothumbtitle {
+  @include secondary-font-mixin();
+  font-size: $large-font-size;
+  margin: auto;
+  margin-top:10px;
+  text-align: center;
+  width: $thumbnailWidth;
+}
+
+#videothumbnail {
+  width: $thumbnailWidth;
+  height: auto;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#videothumbdescription {
+  @include secondary-font-mixin();
+  width: $thumbnailWidth;
+  text-align: center;
+  padding: $thumbnailPadding;
+}
+
+.LLLProgressOverlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: $white-imperfect;
+  opacity: 1;
+  z-index: 9999;
+}
+
+.LLLProgressbar {
+    border: 20px solid $primary-ui-color;
+    background-color: $primary-ui-color;
+    @include rounded-border();
+    position: absolute;
+    width: 70%;
+    left: 15%;
+    top: 43%;
+    height: 14%;
+    opacity: 1;
+    overflow: hidden;
+}
+
+.LLLProgress {
+  position:absolute;
+  left:0px;
+  top:0px;
+  height: 100%;
+  width: 0%;
+  background-color: white;
+  @include rounded-border();
+  padding: 0px;
+}
