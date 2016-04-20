@@ -1,9 +1,10 @@
 module.exports = function($scope, $state, $lololol, $timeout, $window, $sce) {
-	var self = this;
+	var self = $scope;
 	var videoDiv = "#mainVPdiv";
 	var tourbar_point_id = "#tourbar-point-";
 	var thumbnailAnimationDuration = 250;
 
+	$scope.ready = false;
 	$scope.videoPaused = false;
 	$scope.youtube_player;
 
@@ -95,7 +96,6 @@ module.exports = function($scope, $state, $lololol, $timeout, $window, $sce) {
 		thumbnail.stop();
 		thumbnail.css({"top" : top + "px", "left": left + "px"});
 		thumbnail.animate({ opacity: 1, top: "-=10px" }, thumbnailAnimationDuration);
-
 	}
 
 	$scope.tourbar_point_hover_out = function(video){
@@ -142,35 +142,45 @@ module.exports = function($scope, $state, $lololol, $timeout, $window, $sce) {
 		});
 	}
 
-	$scope.keyPressed = function($event) {
-		console.log("KEYDOWN");
-        if ($event.keyCode === 32 || $event.charCode === 32) {
-        	$scope.spacebar();
-        }
-	}
-	
-
 	$scope.spacebar = function(){
-		console.log($scope.videoPaused);
 		if($scope.videoPaused){
-			youtube_player.playVideo();
-			$scope.videoPaused = false;
+			$scope.youtube_player.playVideo();
 		} else {
-			youtube_player.pauseVideo();
-			$scope.videoPaused = true;
+			$scope.youtube_player.pauseVideo();
 		}
 	}
 
 	$scope.$on('$viewContentLoaded', function(event) {
-		$scope.resize();
-		$('.keyboardHandler').keydown($scope.keyPressed);
+		if(!$scope.ready){
+			$scope.ready = true;
+			$(document).keydown(function(event){
+				switch(event.keyCode){
+					case(32):
+						if($scope.youtube_player){
+							$scope.spacebar();
+						}
+						break;
+					case(37):
+						$scope.previous();
+						$scope.$apply();
+						break;
+					case(39):
+						$scope.next();
+						$scope.$apply();
+						break;
+				}
+			});
+			$scope.resize();
+		}
 	});
 
 	$scope.$on('youtube.player.paused', function ($event, player) {
+		$scope.youtube_player = player;
     	$scope.videoPaused = true;
   	});	
 
   	$scope.$on('youtube.player.playing', function ($event, player) {
+  		$scope.youtube_player = player;
     	$scope.videoPaused = false;
   	});	
 

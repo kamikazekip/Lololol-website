@@ -1,5 +1,5 @@
 <div ui-view>
-	<div class="keyboardHandler">
+	<div id="keyboardHandler" class="keyboardHandler">
 		<nav class="nav-fillpath">
 			<a ng-click="previous();" class="prev">
 				<span class="icon-wrap"></span>
@@ -14,7 +14,6 @@
 			<youtube-video 	id="mainVP" 
 							class="main-video-player" 
 							video-id="currentVideo.youtube_embed"
-							player="youtube_player"
 							player-vars="youtube_options"></youtube-video>
 		</div>
 		<div class="tourbar">
