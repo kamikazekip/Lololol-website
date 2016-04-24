@@ -4,7 +4,6 @@ module.exports = function($scope, $state, $lololol, $timeout, $window, $sce) {
 	var tourbar_point_id = "#tourbar-point-";
 	var thumbnailAnimationDuration = 250;
 
-	$scope.ready = false;
 	$scope.videoPaused = false;
 	$scope.youtube_player;
 
@@ -72,6 +71,16 @@ module.exports = function($scope, $state, $lololol, $timeout, $window, $sce) {
 		id: "12",
 		title: "You're a wizard harry!",
 		youtube_embed: "tKNhPpUR0Pg"
+	}, 
+	{
+		id: "13",
+		title: "Odin eating like a person",
+		youtube_embed: "4Ri5cszSKEg"
+	}, 
+	{
+		id: "14",
+		title: "Hey ron, hey billy", 
+		youtube_embed: "zBJU9ndpH1Q"
 	}];
 
 	$scope.currentVideo = $scope.videos[0];
@@ -135,10 +144,12 @@ module.exports = function($scope, $state, $lololol, $timeout, $window, $sce) {
 
 	$scope.positionDots = function(){
 		$('#tourbar-actual').children('.tourbar-point').each(function (index) {
-			left = index * (100 / ($scope.videos.length - 1));
+			console.log("HALLO");
+			leftPercentage = index * (100 / ($scope.videos.length - 1));
 			var width = $(this).width();
-		    $(this).css('left', left + '%');
-		    $(this).css("left", "-=" + ( width / 2 ) + "px");
+			var parentWidth = $(this).parent().width();
+			var newLeft = (parentWidth * (0.01 * leftPercentage)) - (width / 2);
+		    $(this).css('left', newLeft + 'px');
 		});
 	}
 
@@ -150,28 +161,28 @@ module.exports = function($scope, $state, $lololol, $timeout, $window, $sce) {
 		}
 	}
 
+	$(document).ready(function(){
+		$(document).keydown(function(event){
+			switch(event.keyCode){
+				case(32):
+					if($scope.youtube_player){
+						$scope.spacebar();
+					}
+					break;
+				case(37):
+					$scope.previous();
+					$scope.$apply();
+					break;
+				case(39):
+					$scope.next();
+					$scope.$apply();
+					break;
+			}
+		});
+	})
+
 	$scope.$on('$viewContentLoaded', function(event) {
-		if(!$scope.ready){
-			$scope.ready = true;
-			$(document).keydown(function(event){
-				switch(event.keyCode){
-					case(32):
-						if($scope.youtube_player){
-							$scope.spacebar();
-						}
-						break;
-					case(37):
-						$scope.previous();
-						$scope.$apply();
-						break;
-					case(39):
-						$scope.next();
-						$scope.$apply();
-						break;
-				}
-			});
-			$scope.resize();
-		}
+		$scope.resize();
 	});
 
 	$scope.$on('youtube.player.paused', function ($event, player) {
@@ -189,10 +200,11 @@ module.exports = function($scope, $state, $lololol, $timeout, $window, $sce) {
   	});	
 
  	$scope.$on('onRepeatLast', function(scope, element, attrs){
+ 		console.log("HOI");
     	$scope.positionDots();
   	});
 
-  	$(window).on("resize.doResize", function (){
+	angular.element($window).bind('resize', function () {
 		$scope.resize();
 		$scope.positionDots();
 	});
