@@ -28,11 +28,6 @@ module.exports = function($scope, $state, $lololol, $timeout, $window, $sce) {
 		youtube_embed: "zGX0LVkLr04"
 	},
 	{
-		id: "4",
-		title: "How to correctly add milk to your coffee",
-		youtube_embed: "TC6JhvM0jWM"
-	},
-	{
 		id: "5",
 		title: "Wingardium leviosa",
 		youtube_embed: "FWtO0cfgewY"

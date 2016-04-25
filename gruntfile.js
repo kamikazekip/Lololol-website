@@ -13,7 +13,6 @@ module.exports = function(grunt) {
    },
    copy: {
 	   all: {
-       // This copies all the html and css into the dist/ folder
        expand: true,
        cwd: 'app/',
        src: [ '**/*.html', '**/*.css', '**/*.png', 
@@ -23,10 +22,10 @@ module.exports = function(grunt) {
        dest: 'dist/',
      }, 
      files: {
-      cwd: 'lib',  // set working folder / root to copy
-      src: '**/*',           // copy all files and subfolders
-      dest: 'dist/lib',    // destination folder
-      expand: true           // required when using cwd
+      cwd: 'lib',
+      src: '**/*', 
+      dest: 'dist/lib',
+      expand: true
     }
    },
    concat: {
@@ -82,7 +81,15 @@ module.exports = function(grunt) {
        files: 'app/**/*.css',
        tasks: 'copy'
      }
-   }
+   },
+   'http-server': {
+            dev: {           
+                root: './dist',           
+                port: 8080,
+                openBrowser : true,
+                runInBackground: true 
+            }
+        }
  });
  
  // Load the npm installed tasks
@@ -93,9 +100,10 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-http-server');
 
   // The default tasks to run when you type: grunt
-  grunt.registerTask('default', ['concat', 'browserify', 'sass', 'copy', 'compass']);
+  grunt.registerTask('default', ['concat', 'browserify', 'sass', 'copy', 'compass', 'http-server', 'watch']);
 };
 	 
 	 
