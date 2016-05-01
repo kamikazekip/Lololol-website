@@ -1,5 +1,19 @@
 <div ui-view>
 	<div id="keyboardHandler" class="keyboardHandler">
+		<div class="tours-navigation">
+			<div class="tourbar">
+				<div id="tourbar-actual">
+					<div 	ng-repeat="video in videos track by video.id" class="tourbar-point" 
+							ng-click="select_video(video);"
+							ng-mouseover="tourbar_point_hover(video)" 
+							ng-mouseleave="tourbar_point_hover_out(video)"
+							ng-attr-id="tourbar-point-{{video.id }}"
+							ng-class="{tourbarpointactive: video.id == currentVideo.id}"
+							on-last-repeat>
+					</div>
+				</div>
+			</div>
+		</div>
 		<nav class="nav-fillpath">
 			<a ng-click="previous();" class="prev">
 				<span class="icon-wrap"></span>
@@ -13,20 +27,9 @@
 		<div id="mainVPdiv" class="main-video-player-div">
 			<youtube-video 	id="mainVP" 
 							class="main-video-player" 
-							video-id="currentVideo.youtube_embed"
+							video-id="currentVideo.embed"
 							player-vars="youtube_options"></youtube-video>
 		</div>
-		<div class="tourbar">
-		  	<div id="tourbar-actual">
-		  		<div 	ng-repeat="video in videos track by video.id" class="tourbar-point" 
-		  				ng-click="select_video(video);"
-		  				ng-mouseover="tourbar_point_hover(video)" 
-		  				ng-mouseleave="tourbar_point_hover_out(video)"
-		  				ng-attr-id="tourbar-point-{{video.id }}"
-		  				ng-class="{tourbarpointactive: video.id == currentVideo.id}"
-		  				on-last-repeat>
-		  		</div>
-		  </div>
 		</div>
 		<div id="videothumb">
 	  		<div id="videothumbtitle">#Title</div>

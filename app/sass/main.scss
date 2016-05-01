@@ -1,15 +1,21 @@
 //Vars
 $white-imperfect:             #ECF0F1;
 
+$primary-ui-color:            tomato; //#f12b24 = youtube
 $primary-background-color: 		$white-imperfect;
 
 $primary-font-family: 		    Pacifico;
 $primary-font-size:				    20;
 $primary-font-color:          black;
 
+$secondary-ui-color:          white;
 $secondary-font-family:       wtf;
 $secondary-font-size:         20;
 $secondary-font-color:        black;
+
+$tertiary-ui-color:           black;
+
+$barColor:                    $secondary-ui-color;
 
 $large-font-size:             30;
 
@@ -65,6 +71,7 @@ html, body {
 html {
 	body {
 		margin: 0px;
+    overflow: hidden;
 	}
 }
 
@@ -133,39 +140,47 @@ $button-animation-durations:
 	border-bottom: 0px solid #2980B9;
 }
 
-$tourbar-width:         82%;
-$tourbar-point-width:   25px;
-$bar:                   5px;
+$tours-navigation-height:   60px;
+$tourbar-width:             82%;
+$tourbar-point-width:       25px;
+$tourbar-height:            5px;
 
-$barColor:              #888;
-$primary-ui-color:      tomato;
-
-/* Tooltip */
+.tours-navigation {
+  height: $tours-navigation-height; 
+  width: 100%;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  background-color: $primary-ui-color;
+  z-index: 1;
+}
 
 .tourbar {
   width: $tourbar-width;
-  
   position: absolute;
   left: 50% - ($tourbar-width / 2);
-  top: 95%;
+  top: ($tours-navigation-height / 2)- ($tourbar-height / 2) ;
 }
 
 #tourbar-actual {
   position: relative;
   background: $barColor;
-  height: $bar;
+  height: $tourbar-height;
   width: 100%;
 }
 
+$tourbar-point-ring-width: 5px;
+
 .tourbar-point {
   border-radius: $tourbar-point-width;
-  display: block;
-  background: $primary-ui-color;
   position: absolute;
-  top: 0 - ($tourbar-point-width / 2) + ($bar / 2);
+  z-index: 3;
+  display: block;
+  background-color: $primary-ui-color;
+  border: $secondary-ui-color solid $tourbar-point-ring-width;
+  top: 0 - ($tourbar-point-width / 2) - ($tourbar-height / 2);
   height: $tourbar-point-width;
   width: $tourbar-point-width;
-  z-index: 10;
   
   $transition: all 0.1s linear;
   -webkit-transition: $transition;
@@ -175,7 +190,7 @@ $primary-ui-color:      tomato;
   cursor: pointer;
   
   &:hover {
-    $size: 2.0;
+    $size: 1.5;
     -webkit-transform: scale($size);
     -moz-transform: scale($size);
     -ms-transform: scale($size);    
@@ -183,42 +198,9 @@ $primary-ui-color:      tomato;
     transform: scale($size);
   }
 }
-
-$activeRingWidth: 5px;
 
 .tourbarpointactive {
-  background-color: white;
-  -webkit-box-shadow: 0px 0px 0px $activeRingWidth $primary-ui-color;
-  -moz-box-shadow:    0px 0px 0px $activeRingWidth $primary-ui-color;
-  box-shadow:         0px 0px 0px $activeRingWidth $primary-ui-color;
-  height: $tourbar-point-width - $activeRingWidth;
-  width: $tourbar-point-width - $activeRingWidth;
-  top: -8.5px;
-
-  &:hover {
-    $size: 1.75;
-    -webkit-transform: scale($size);
-    -moz-transform: scale($size);
-    -ms-transform: scale($size);    
-    -o-transform: scale($size);        
-    transform: scale($size);
-  }
-}
-
-.point-1 {
-  left: 0;
-}
-
-.point-2 {
-  left: 33%;
-}
-
-.point-3 {
-  left: 66%;
-}
-
-.point-4 {
-  left: 100%;
+  background: $secondary-ui-color;
 }
 
 .start-video { 
@@ -239,9 +221,9 @@ $outline-width: 4px;
   outline: $outline-width solid $primary-ui-color;
   position: absolute;
   background-color: #000;
-  top: 10.5%;
+  top: 12%;
   left: 5px;
-  height: 74%;
+  height: 80%;
   width: 2px;
 }
 
@@ -255,15 +237,16 @@ $outline-width: 4px;
 
 $thumbnailWidth: 300px;
 $thumbnailPadding: 10px;
-$thumbnailColor: white;
 
 
 #videothumb {
   outline: $outline-width solid $primary-ui-color;
   position: absolute;
-  background-color: $thumbnailColor;
+  left: 20px;
+  top: 250px;
+  background-color: white;
   text-align: center;
-  opacity: 0;
+  opacity: 1;
 }
 
 $triangleWeight: 30px;
@@ -273,7 +256,7 @@ $triangleWeight: 30px;
   border: solid transparent;
   content: "";
   position: absolute;
-  top: 100%;
+  top: - $triangleWeight * 2;
   left: 0;
   right: 0;
   margin: 0 auto;
@@ -282,22 +265,22 @@ $triangleWeight: 30px;
 }
     
 #videothumb:after {
-  border-color: rgba(255, 255, 255, 0);
-  border-top-color: $thumbnailColor;
-  border-width: $triangleWeight;
+  border-color: rgba(113, 158, 206, 0);
+  border-bottom-color: white;
+  border-width: $triangleWeight + ($outline-width * 1.5);
   
 }
 #videothumb:before {
-  border-color: rgba(113, 158, 206, 0);
-  border-top-color: $primary-ui-color;
-  border-width: $triangleWeight + ($outline-width * 1.5);
+  border-color: rgba(255, 255, 255, 0);
+  border-bottom-color: $primary-ui-color;
+  border-width: $triangleWeight;
 }
 
 #videothumbtitle {
   @include secondary-font-mixin();
   font-size: $large-font-size;
   margin: auto;
-  margin-top:10px;
+  margin-top: 10px;
   text-align: center;
   width: $thumbnailWidth;
 }
@@ -308,13 +291,6 @@ $triangleWeight: 30px;
   padding: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
-}
-
-#videothumbdescription {
-  @include secondary-font-mixin();
-  width: $thumbnailWidth;
-  text-align: center;
-  padding: $thumbnailPadding;
 }
 
 .LLLProgressOverlay {
@@ -358,4 +334,166 @@ $triangleWeight: 30px;
   left: 0px;
   width: 100%;
   height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// NAV FILLPATH //
+
+.nav-fillpath a.prev {
+  left: -50px;
+}
+
+.nav-fillpath a.next {
+  right: -50px;
+}
+
+.nav-fillpath a {
+  position: absolute;
+  top: 47.5%;
+  display: block;
+  outline: none;
+  text-align: left;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 200px;
+  height: 200px;
+  cursor: pointer;
+}
+
+.nav-fillpath a::before,
+.nav-fillpath a::after,
+.nav-fillpath .icon-wrap::before,
+.nav-fillpath .icon-wrap::after {
+  position: absolute;
+  left: 50%;
+  width: 10px;
+  height: 50%;
+  background: $primary-ui-color;
+  content: '';
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.nav-fillpath .icon-wrap::before,
+.nav-fillpath .icon-wrap::after {
+  z-index: 100;
+  height: 0;
+  background: $secondary-ui-color;
+  -webkit-transition: height 0.3s, -webkit-transform 0.3s;
+  transition: height 0.3s, transform 0.3s;
+}
+
+.nav-fillpath a::before,
+.nav-fillpath .icon-wrap::before {
+  top: 50%;
+  -webkit-transform: translateX(-50%) rotate(-135deg);
+  transform: translateX(-50%) rotate(-135deg);
+  -webkit-transform-origin: 50% 0%;
+  transform-origin: 50% 0%;
+}
+
+.nav-fillpath a.next::before,
+.nav-fillpath a.next .icon-wrap::before {
+  -webkit-transform: translateX(-50%) rotate(135deg);
+  transform: translateX(-50%) rotate(135deg);
+  -webkit-transform-origin: 50% 0%;
+  transform-origin: 50% 0%;
+}
+
+.nav-fillpath a::after,
+.nav-fillpath .icon-wrap::after {
+  top: 50%;
+  -webkit-transform: translateX(-50%) rotate(-45deg);
+  transform: translateX(-50%) rotate(-45deg);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+.nav-fillpath a.next::after,
+.nav-fillpath a.next .icon-wrap::after {
+  -webkit-transform: translateX(-50%) rotate(45deg);
+  transform: translateX(-50%) rotate(45deg);
+  -webkit-transform-origin: 100% 0%;
+  transform-origin: 100% 0%;
+}
+
+.nav-fillpath h3 {
+  position: absolute;
+  top: 50%;
+  margin: 0;
+  color: $tertiary-ui-color;
+  font-weight: 300;
+  font-size: 50px;
+  opacity: 0;
+  -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
+}
+
+.nav-fillpath a.prev h3 {
+  left: 100%;
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%);
+}
+
+.nav-fillpath a.next h3 {
+  right: 100%;
+  text-align: right;
+  -webkit-transform: translateY(-50%) translateX(50%);
+  transform: translateY(-50%) translateX(50%);
+}
+
+.nav-fillpath a:hover .icon-wrap::before,
+.nav-fillpath a:hover .icon-wrap::after {
+  height: 50%;
+}
+
+.nav-fillpath a:hover::before,
+.nav-fillpath a:hover .icon-wrap::before {
+  -webkit-transform: translateX(-50%) rotate(-125deg);
+  transform: translateX(-50%) rotate(-125deg);
+}
+
+.nav-fillpath a.next:hover::before,
+.nav-fillpath a.next:hover .icon-wrap::before {
+  -webkit-transform: translateX(-50%) rotate(125deg);
+  transform: translateX(-50%) rotate(125deg);
+}
+
+.nav-fillpath a:hover::after,
+.nav-fillpath a:hover .icon-wrap::after {
+  -webkit-transform: translateX(-50%) rotate(-55deg);
+  transform: translateX(-50%) rotate(-55deg);
+}
+
+.nav-fillpath a.next:hover::after,
+.nav-fillpath a.next:hover .icon-wrap::after {
+  -webkit-transform: translateX(-50%) rotate(55deg);
+  transform: translateX(-50%) rotate(55deg);
+}
+
+.nav-fillpath a:hover h3 {
+  opacity: 1;
+  -webkit-transform: translateY(-50%) translateX(0);
+  transform: translateY(-50%) translateX(0);
 }
