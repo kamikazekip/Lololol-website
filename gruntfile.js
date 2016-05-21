@@ -83,13 +83,13 @@ module.exports = function(grunt) {
      }
    },
    'http-server': {
-            dev: {           
-                root: './dist',           
-                port: 8080,
-                openBrowser : true,
-                runInBackground: true 
-            }
-        }
+      dev: {           
+          root: './dist',           
+          port: 8080,
+          openBrowser : true,
+          runInBackground: true 
+      }
+  },
  });
  
  // Load the npm installed tasks

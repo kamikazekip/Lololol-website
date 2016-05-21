@@ -2,26 +2,24 @@
 	<div id="keyboardHandler" class="keyboardHandler">
 		<div class="tours-navigation">
 			<div class="tourbar">
-				<div id="tourbar-actual">
-					<div 	ng-repeat="video in videos track by video.id" class="tourbar-point" 
-							ng-click="select_video(video);"
-							ng-mouseover="tourbar_point_hover(video)" 
-							ng-mouseleave="tourbar_point_hover_out(video)"
-							ng-attr-id="tourbar-point-{{video.id }}"
-							ng-class="{tourbarpointactive: video.id == currentVideo.id}"
-							on-last-repeat>
-					</div>
+				<div 	ng-repeat="video in videos track by video.id" class="tourbar-point" 
+						ng-click="select_video(video);"
+						ng-mouseover="tourbar_point_hover(video)" 
+						ng-mouseleave="tourbar_point_hover_out(video)"
+						ng-attr-id="tourbar-point-{{video.id }}"
+						ng-class="{tourbarpointactive: video.id == currentVideo.id}"
+						on-last-repeat>
 				</div>
 			</div>
 		</div>
 		<nav class="nav-fillpath">
-			<a ng-click="previous();" class="prev">
+			<a ng-click="previous();" class="prev nav-fillpath-big">
 				<span class="icon-wrap"></span>
-				<h3 class="singleSleeve">Previous</h3>
+				<h3 class="secondary-font ">Previous</h3>
 			</a>
-			<a ng-click="next();" class="next">
+			<a ng-click="next();" class="next nav-fillpath-big">
 				<span class="icon-wrap"></span>
-				<h3 class="singleSleeve">Next</h3>
+				<h3 class="secondary-font">Next</h3>
 			</a>
 		</nav>
 		<div id="mainVPdiv" class="main-video-player-div">
@@ -31,9 +29,19 @@
 							player-vars="youtube_options"></youtube-video>
 		</div>
 		</div>
-		<div id="videothumb">
-	  		<div id="videothumbtitle">#Title</div>
-	  		<img id="videothumbnail" src="http://img.youtube.com/vi/TC6JhvM0jWM/0.jpg" />
+		<div class="videothumb videothumbBorder" data-content="0">
+	  		<div class="videothumbtitle"></div>
+	  		<img class="videothumbnail" />
+	  	</div>
+	  	<div id="share-panel" class="share-panel-out">
+	  		<div id="share-panel-button"
+	  			 ng-click="share_button_click();">
+		  		<div id="label">Share</div>
+		  		<span id="background"></span>
+		  	</div>
+		  	<div class="share-button twitter">t</div>
+		  	<div class="share-button facebook">f</div>
+		  	<div class="share-button google">g</div>
 	  	</div>
   	</div>
 </div>

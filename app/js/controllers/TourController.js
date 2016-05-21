@@ -1,116 +1,150 @@
-module.exports = function($scope, $state, $lololol, $timeout, $window, $sce) {
-	var self = $scope;
-	var videoDiv = "#mainVPdiv";
-	var tourbar_point_id = "#tourbar-point-";
-	var thumbnailAnimationDuration = 300;
-	var thumbnailAnimationEasing = "easeInOutQuart"
-
-	$scope.videoPaused = false;
+module.exports = function($scope, $state, $lololol, $window, $stateParams) {
+	$scope.videoDiv 					= "#mainVPdiv";
+	$scope.tourbar_selector  			= ".tourbar";
+	$scope.tourbar_point_selector 		= "#tourbar-point-";
+	$scope.tourbar_point_margin			= 8;
+	$scope.thumbnailAnimationEasing 	= "easeInOutQuad"
+	$scope.thumbnailAnimationDuration 	= 400;
+	$scope.videoPaused 					= false;
 	$scope.youtube_player;
+	$scope.youtube_options 				= { 	
+											rel: 0, 
+											iv_load_policy: 3,
+											autoplay: 0
+										};
 
-	$scope.youtube_options = { 	
-								rel: 0, 
-								iv_load_policy: 3
-							};
+	$scope.videos = [{
+		id: "1",
+		title: "Late for meeting",
+		embed: "wBqM2ytqHY4"
+	},
+	{
+		id: "2",
+		title: "Going to the store",
+		embed: "iRZ2Sh5-XuM"
+	},
+	{
+		id: "3",
+		title: "Girl cries like a supercar (original)",
+		embed: "_yH5iyn81Ks"
+	},
+	{
+		id: "4",
+		title: "Wingardium leviosa",
+		embed: "FWtO0cfgewY"
+	}, 
+	{
+		id: "5",
+		title: "Wingardium leviosa 2",
+		embed: "reop2bXiNgk"
+	}, 
+	{
+		id: "6",
+		title: "Thor 'n' loki",
+		embed: "-CNlNYIRw4g"
+	},
+	{
+		id: "7",
+		title: "Dragonzball P (Dragonball Z Parody) - Oney Cartoons",
+		embed: "OYa5aQb3YGE"
+	},
+	{
+		id: "8",
+		title: "Dragonzball PeePee (Dragonball Z Parody Animation) - Oney Cartoons",
+		embed: "7pSmhZFbCy0"
+	},
+	{
+		id: "9",
+		title: "Henry the Hoover's Cocaine Overdose",
+		embed: "CmC62Eg82E8"
+	}, 
+	{
+		id: "10",
+		title: "DJ RAVINE'S BEST LAUNCHPAD COVER EVER - AVICII - LEVELS",
+		embed: "ya7FbdL5Xrk"
+	}, 
+	{
+		id: "11",
+		title: "You're a wizard harry!",
+		embed: "tKNhPpUR0Pg"
+	}, 
+	{
+		id: "12",
+		title: "Odin eating like a person",
+		embed: "4Ri5cszSKEg"
+	}, 
+	{
+		id: "13",
+		title: "Hey ron, hey billy", 
+		embed: "zBJU9ndpH1Q"
+	},
+	{
+		id: "14",
+		title: "Will Sasso - lemons",
+		embed: "T6i5qHHXjz0"
+	}]
 
-    $scope.tour = {
-    	title: "YouTube part 1",
-    	videos: [{
-			id: "1",
-			title: "Late for meeting",
-			embed: "wBqM2ytqHY4"
-		},
-		{
-			id: "2",
-			title: "Going to the store",
-			embed: "iRZ2Sh5-XuM"
-		},
-		{
-			id: "3",
-			title: "La la la cocaine",
-			embed: "zGX0LVkLr04"
-		},
-		{
-			id: "5",
-			title: "Wingardium leviosa",
-			embed: "FWtO0cfgewY"
-		}, 
-		{
-			id: "6",
-			title: "Wingardium leviosa 2",
-			embed: "reop2bXiNgk"
-		}, 
-		{
-			id: "7",
-			title: "Thor 'n' loki",
-			embed: "-CNlNYIRw4g"
-		},
-		{
-			id: "8",
-			title: "Dragonzball P (Dragonball Z Parody) - Oney Cartoons",
-			embed: "OYa5aQb3YGE"
-		},
-		{
-			id: "9",
-			title: "Dragonzball PeePee (Dragonball Z Parody Animation) - Oney Cartoons",
-			embed: "7pSmhZFbCy0"
-		},
-		{
-			id: "10",
-			title: "Henry the Hoover's Cocaine Overdose",
-			embed: "CmC62Eg82E8"
-		}, 
-		{
-			id: "11",
-			title: "DJ RAVINE'S BEST LAUNCHPAD COVER EVER - AVICII - LEVELS",
-			embed: "ya7FbdL5Xrk"
-		}, 
-		{
-			id: "12",
-			title: "You're a wizard harry!",
-			embed: "tKNhPpUR0Pg"
-		}, 
-		{
-			id: "13",
-			title: "Odin eating like a person",
-			embed: "4Ri5cszSKEg"
-		}, 
-		{
-			id: "14",
-			title: "Hey ron, hey billy", 
-			embed: "zBJU9ndpH1Q"
-		}]
-    }
-	$scope.currentTour = $scope.tour; 
-	$scope.videos = $scope.currentTour.videos;
-	$scope.currentVideo = $scope.currentTour.videos[0];
-
+	$scope.init = function(){
+		$scope.currentVideo = $scope.videos[0];
+		$scope.url_video_id = $stateParams.video;
+		var result = $.grep($scope.videos, function(e){ return e.id == $scope.url_video_id; });
+		if (result.length == 1) {
+			$scope.currentVideo = result[0];
+		} else {
+			$scope.goToVideo($scope.currentVideo);
+		}
+	}
+	
 	$scope.select_video = function(video){
-		$scope.youtube_options.autoplay = 1;
-		$scope.select_video = $scope.select_video_second;
-		$scope.select_video(video);
+		$scope.currentVideo = video;
+		$scope.goToVideo(video);
 	}
 
-	$scope.select_video_second = function(video){
-		$scope.currentVideo = video;
+	$scope.goToVideo = function(video){
+		$state.go('tour', { video: video.id });
+	}
+
+	$scope.positionToolbar = function(){
+		var tourbar = $($scope.tourbar_selector);
+		var tourbar_point = $($scope.tourbar_point_selector + $scope.currentVideo.id);
+		var center = $(window).width() / 2;
+		var tourbar_point_left = tourbar_point.position().left
+		var tourbar_point_width = tourbar_point.width() + (parseInt(tourbar_point.css("border-left-width")) * 2)
+		var newTourbarLeft = center - tourbar_point_left - (tourbar_point_width / 2)
+		if(newTourbarLeft > 0 || tourbar_point_left <= center ){
+			newTourbarLeft = parseInt(tourbar_point.css("border-left-width")) + tourbar_point.width() + 20;
+		}
+		console.log(newTourbarLeft)
+		tourbar.css({"left": newTourbarLeft + "px"});
 	}
 
 	$scope.tourbar_point_hover = function(video){
-		$("#videothumbtitle").html(video.title);
-		$("#videothumbnail").attr("src", "http://img.youtube.com/vi/" + video.embed + "/0.jpg");
-		var tourbar_point 	= $(tourbar_point_id + video.id);
-		var thumbnail 		= $("#videothumb");
+		$(".videothumbtitle").html(video.title);
+		$(".videothumbnail").attr("src", "http://img.youtube.com/vi/" + video.embed + "/0.jpg");
+		var tourbar_point 	= $($scope.tourbar_point_selector + video.id);
+		var thumbnail 		= $(".videothumb");
+		var thumbnailWidth  = thumbnail.width();
+		var windowWidth 	= $(window).width();
 		var top 			= tourbar_point.offset().top + 50;
-		var left 			= tourbar_point.offset().left - ( tourbar_point.width() / 2 ) - thumbnail.width() / 2 + 30;
+		var left 			= tourbar_point.offset().left - ( tourbar_point.width() / 2 ) - thumbnail.width() / 2 + 30 - 5;
+		if(left < 0){
+			left = 10;
+			thumbnail.removeClass("videothumbBorder videothumbBorderRight").addClass("videothumbBorderLeft");
+		} else if(left > windowWidth - thumbnailWidth){
+			left = windowWidth - thumbnailWidth - 10;
+			thumbnail.removeClass("videothumbBorder videothumbBorderLeft").addClass("videothumbBorderRight");
+		} else { 
+			thumbnail.removeClass("videothumbBorderLeft videothumbBorderRight").addClass("videothumbBorder");
+		}
 		thumbnail.stop();
 		thumbnail.css({"opacity": 0, "top": top + "px", "left": left + "px"});
-		thumbnail.animate({ opacity: 1, top: "+=30px" }, thumbnailAnimationDuration, thumbnailAnimationEasing);
+		thumbnail.animate({ opacity: 1, top: "+=30px" }, $scope.thumbnailAnimationDuration, $scope.thumbnailAnimationEasing);
 	}
 
 	$scope.tourbar_point_hover_out = function(video){
-		var thumbnail 		= $("#videothumb");
+		var thumbnail 		= $(".videothumb");
 		thumbnail.stop();
-		thumbnail.animate({ opacity: 0, top: "+=30px" }, thumbnailAnimationDuration, thumbnailAnimationEasing, function(){
+		thumbnail.animate({ opacity: 0, top: "+=30px" }, $scope.thumbnailAnimationDuration, $scope.thumbnailAnimationEasing, function(){
 			var top 	= 0 - thumbnail.height() - 10;
 			var left 	= 0 - thumbnail.width()  - 10;
 			thumbnail.css({"top": top + "px", "left": left + "px"});
@@ -136,18 +170,23 @@ module.exports = function($scope, $state, $lololol, $timeout, $window, $sce) {
 	}
 
 	$scope.resize = function(){
-		var vpHeight = $(videoDiv).height();
+		var vpHeight = $($scope.videoDiv).height();
 		var newWidth = Math.floor((vpHeight / 9) * 16);
 		var newLeft = ($(window).width() - newWidth) / 2;
-		$(videoDiv).css({ width: newWidth, left: newLeft });
+		$($scope.videoDiv).css({ width: newWidth, left: newLeft });
 	}
 
 	$scope.positionDots = function(){
-		$('#tourbar-actual').children('.tourbar-point').each(function (index) {
+		var tourbar = $(".tourbar")
+		var newTourbarWidth = ($scope.videos.length - 1) * $(window).width() * (0.01 * $scope.tourbar_point_margin);
+		tourbar.css({width: newTourbarWidth});
+
+		$('.tourbar').children('.tourbar-point').each(function (index) {
 			leftPercentage = index * (100 / ($scope.videos.length - 1));
 			var width = $(this).width();
+			var borderLeftWidth = parseInt($(this).css("border-left-width"));
 			var parentWidth = $(this).parent().width();
-			var newLeft = (parentWidth * (0.01 * leftPercentage)) - (width / 2);
+			var newLeft = (parentWidth * (0.01 * leftPercentage)) - (width / 2) - borderLeftWidth;
 		    $(this).css('left', newLeft + 'px');
 		});
 	}
@@ -157,6 +196,15 @@ module.exports = function($scope, $state, $lololol, $timeout, $window, $sce) {
 			$scope.youtube_player.playVideo();
 		} else {
 			$scope.youtube_player.pauseVideo();
+		}
+	}
+
+	$scope.share_button_click = function(){
+		var share_panel = $("#share-panel");
+		if(share_panel.hasClass("share-panel-out")){
+			share_panel.removeClass("share-panel-out");
+		} else {
+			share_panel.addClass("share-panel-out");
 		}
 	}
 
@@ -194,19 +242,24 @@ module.exports = function($scope, $state, $lololol, $timeout, $window, $sce) {
     	$scope.videoPaused = false;
   	});	
 
+  	$scope.$on('youtube.player.ready', function ($event, player) {
+  		$scope.positionToolbar();
+  	});	
+
   	$scope.$on('youtube.player.ended', function ($event, player) {
     	$scope.next();
   	});	
 
  	$scope.$on('onRepeatLast', function(scope, element, attrs){
- 		console.log("HOI");
     	$scope.positionDots();
   	});
 
 	angular.element($window).bind('resize', function () {
 		$scope.resize();
 		$scope.positionDots();
+		$scope.positionToolbar();
 	});
 
+	$scope.init();
  	//$lololol.fadeIn();
 }

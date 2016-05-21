@@ -27,12 +27,12 @@ app.config(function( $sceDelegateProvider, $locationProvider, $stateProvider, $u
       controller: "HomeController as c",
     })
     .state('tour', {
-      url: "/tour",
+      url: "/tour?video",
       templateUrl: "./views/tour.html",
-      controller: "TourController as c"
+      controller: "TourController as c",
+      reloadOnSearch: false
     })
 });
-
 
 app.directive('onLastRepeat', function() {
     return function(scope, element, attrs) {

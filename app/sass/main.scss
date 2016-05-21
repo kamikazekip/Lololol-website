@@ -1,32 +1,26 @@
 //Vars
 $white-imperfect:             #ECF0F1;
 
-$primary-ui-color:            tomato; //#f12b24 = youtube
-$primary-background-color: 		$white-imperfect;
-
-$primary-font-family: 		    Pacifico;
-$primary-font-size:				    20;
-$primary-font-color:          black;
-
+$primary-ui-color:            #f12b24; //#f12b24 = youtube
 $secondary-ui-color:          white;
-$secondary-font-family:       wtf;
-$secondary-font-size:         20;
-$secondary-font-color:        black;
-
 $tertiary-ui-color:           black;
+
+$primary-background-color:    $white-imperfect;
 
 $barColor:                    $secondary-ui-color;
 
-$large-font-size:             30;
+$primary-font-family:         "Requiem";
+$primary-font-size:           30px;
+$primary-font-color:          black;
 
-$pair-button-height: 			    50px;                  
+$secondary-font-family:       "SingleSleeve";
+$secondary-font-size:         30px;
+$secondary-font-color:        black;
 
-@mixin primary-font-mixin() 
-{
-	  font-family: $primary-font-family;
-  	font-size: $primary-font-size;
-    color: $primary-font-color;
-}
+$pair-button-height: 			    50px;      
+
+$thumbnailWidth: 300px;
+$thumbnailPadding: 10px;            
 
 $border-radius: 700px;
 @mixin rounded-border(){
@@ -45,14 +39,39 @@ $border-radius: 700px;
        url('../fonts/SingleSleeve/SingleSleeve.eot?#iefix') format('embedded-opentype');
 }
 
-
-@mixin secondary-font-mixin()
-{
-    font-family: $secondary-font-family;
-    font-size:  $secondary-font-size;
-    color: $secondary-font-color;
+@font-face {
+  font-family: 'Requiem';
+  src: url('../fonts/Requiem/Requiem.woff') format('woff'),
+       url('../fonts/Requiem/Requiem.ttf') format('truetype'),
+       url('../fonts/Requiem/Requiem.svg#Requiem') format('svg'),
+       url('../fonts/Requiem/Requiem.eot'),
+       url('../fonts/Requiem/Requiem.woff2') format('woff2'),
+       url('../fonts/Requiem/Requiem.eot?#iefix') format('embedded-opentype');
 }
 
+@font-face {
+  font-family: 'SocialCircles';
+  src: url('../fonts/SocialCircles/SocialCircles.eot');
+  src: url('../fonts/SocialCircles/SocialCircles.woff2') format('woff2'),
+       url('../fonts/SocialCircles/SocialCircles.woff') format('woff'),
+       url('../fonts/SocialCircles/SocialCircles.ttf') format('truetype'),
+       url('../fonts/SocialCircles/SocialCircles.svg#SocialCircles') format('svg'),
+       url('../fonts/SocialCircles/SocialCircles.eot?#iefix') format('embedded-opentype');
+}
+
+@mixin primary-font-mixin() 
+{
+    font-family: $primary-font-family;
+    font-size: $primary-font-size;
+    color: $primary-font-color;
+}
+
+@mixin secondary-font-mixin() 
+{
+    font-family: $secondary-font-family;
+    font-size: $secondary-font-size;
+    color: $secondary-font-color;
+}
 
 //Mixins
 @mixin primary() 
@@ -61,18 +80,19 @@ $border-radius: 700px;
   	@include primary-font-mixin();
 }
 
+html {
+  font-size: 20px;
+}
+
 html, body {
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	@include primary();
 }
 
-html {
-	body {
+body {
 		margin: 0px;
     overflow: hidden;
-	}
 }
 
 $size-animation: 0.5s;
@@ -89,8 +109,12 @@ $button-animation-durations:
 							border-radius 0.5s,
 							color 0.5s;
 
-.singleSleeve {
-  font-family: SingleSleeve;
+.primary-font {
+  @include primary-font-mixin();
+}
+
+.secondary-font {
+  @include secondary-font-mixin();
 }
 
 .animate
@@ -127,9 +151,9 @@ $button-animation-durations:
 
 .blue:hover{
   opacity: 1;
-	-webkit-box-shadow: 0px 0px 171px -5px rgba(255,0,255,1);
-	-moz-box-shadow: 0px 0px 171px -5px rgba(255,0,255,1);
-	box-shadow: 0px 0px 171px -5px rgba(255,0,255,1);
+	-webkit-box-shadow: 0px 0px 171px -5px $primary-ui-color;
+	-moz-box-shadow: 0px 0px 171px -5px $primary-ui-color;
+	box-shadow: 0px 0px 171px -5px $primary-ui-color;
 	@include rounded-border();
 }
 
@@ -140,10 +164,7 @@ $button-animation-durations:
 	border-bottom: 0px solid #2980B9;
 }
 
-$tours-navigation-height:   60px;
-$tourbar-width:             82%;
-$tourbar-point-width:       25px;
-$tourbar-height:            5px;
+$tours-navigation-height:   40px;
 
 .tours-navigation {
   height: $tours-navigation-height; 
@@ -155,21 +176,23 @@ $tourbar-height:            5px;
   z-index: 1;
 }
 
-.tourbar {
-  width: $tourbar-width;
-  position: absolute;
-  left: 50% - ($tourbar-width / 2);
-  top: ($tours-navigation-height / 2)- ($tourbar-height / 2) ;
-}
+$tourbar-animation-durations:   all 1.0s;
+$tourbar-animation-easing:      ease;
+$tourbar-left:                  10px;
+$tourbar-point-width:           20px;
+$tourbar-point-ring-width:      5px;
+$tourbar-height:                5px;
 
-#tourbar-actual {
-  position: relative;
+.tourbar {
+  transition: $tourbar-animation-durations;
+  -webkit-transition: $tourbar-animation-durations;
+  -webkit-transition-timing-function: $tourbar-animation-easing;
   background: $barColor;
   height: $tourbar-height;
-  width: 100%;
+  position: absolute;
+  left: $tourbar-point-width + $tourbar-point-ring-width + 20px;
+  top: ($tours-navigation-height / 2) - ($tourbar-height / 2) ;
 }
-
-$tourbar-point-ring-width: 5px;
 
 .tourbar-point {
   border-radius: $tourbar-point-width;
@@ -221,7 +244,7 @@ $outline-width: 4px;
   outline: $outline-width solid $primary-ui-color;
   position: absolute;
   background-color: #000;
-  top: 12%;
+  top: 10%;
   left: 5px;
   height: 80%;
   width: 2px;
@@ -235,63 +258,62 @@ $outline-width: 4px;
   width: 100%;
 }
 
-$thumbnailWidth: 300px;
-$thumbnailPadding: 10px;
-
-
-#videothumb {
-  outline: $outline-width solid $primary-ui-color;
+.videothumb {
+  -webkit-box-shadow: 0px 0px 0px $outline-width $primary-ui-color;
+  -moz-box-shadow: 0px 0px 0px $outline-width $primary-ui-color;
+  box-shadow: 0px 0px 0px $outline-width $primary-ui-color;
   position: absolute;
-  left: 20px;
-  top: 250px;
+  left: -100%;
+  top: -100%;
   background-color: white;
   text-align: center;
-  opacity: 1;
+  opacity: 0;
 }
 
 $triangleWeight: 30px;
 
-#videothumb:after, 
-#videothumb:before {
+.videothumbBorder::after, 
+.videothumbBorder::before,
+ {
   border: solid transparent;
   content: "";
   position: absolute;
   top: - $triangleWeight * 2;
   left: 0;
   right: 0;
-  margin: 0 auto;
   width: 0;
   height: 0;
+  margin: 0 auto;
 }
-    
-#videothumb:after {
-  border-color: rgba(113, 158, 206, 0);
-  border-bottom-color: white;
-  border-width: $triangleWeight + ($outline-width * 1.5);
-  
-}
-#videothumb:before {
+
+.videothumbBorder::before, {
   border-color: rgba(255, 255, 255, 0);
   border-bottom-color: $primary-ui-color;
   border-width: $triangleWeight;
 }
+    
+.videothumbBorder::after, {
+  border-color: rgba(113, 158, 206, 0);
+  border-bottom-color: white;
+  border-width: $triangleWeight + ($outline-width * 1.5);
+}
 
-#videothumbtitle {
-  @include secondary-font-mixin();
-  font-size: $large-font-size;
+.videothumbtitle {
+  @include primary-font-mixin();
   margin: auto;
   margin-top: 10px;
   text-align: center;
   width: $thumbnailWidth;
 }
 
-#videothumbnail {
+.videothumbnail {
   width: $thumbnailWidth;
   height: auto;
   padding: 10px;
-  margin-top: 10px;
   margin-bottom: 10px;
 }
+
+
 
 .LLLProgressOverlay {
   position: absolute;
@@ -336,23 +358,123 @@ $triangleWeight: 30px;
   height: 100%;
 }
 
+$share-panel-height: 140px;
+$share-panel-animation-durations: all 1.0s;
+$share-panel-animation-easing: ease;
+$share-panel-button-animation-durations: all 0.5s;
+$share-panel-button-animation-easing: ease;
+$share-panel-button-height: 40px;
 
+#share-panel {
+  transition: $share-panel-animation-durations;
+  -webkit-transition: $share-panel-animation-durations;
+  -webkit-transition-timing-function: $share-panel-animation-easing;
+  width: 100%;
+  height: 500px;
+  position: absolute;
+  left: 0px;
+  text-align: center;
+  bottom: -1 * ($share-panel-height - $share-panel-button-height);
+  background-color: $secondary-ui-color;
+  -webkit-box-shadow: 0px 0px 0px $outline-width $primary-ui-color;
+  -moz-box-shadow: 0px 0px 0px $outline-width $primary-ui-color;
+  box-shadow: 0px 0px 0px $outline-width $primary-ui-color; 
+}
 
+.share-panel-out {
+  bottom: 0px !important;
+}
 
+#share-panel-button {
+   transition: $share-panel-button-animation-durations;
+  -webkit-transition: $share-panel-button-animation-durations;
+  -webkit-transition-timing-function: $share-panel-button-animation-easing;
+  transition-timing-function: $share-panel-button-animation-easing;
+  cursor: pointer;
+  position: absolute;
+  left: 46%;
+  top: -1 * $share-panel-button-height - $outline-width;
+  width: 8%;
+  height: $share-panel-button-height;
+  line-height: $share-panel-button-height;
+  font-family: $primary-font-family;
+  font-size:  $primary-font-size;
+  font-weight: 900;
+  text-align: center;
+  background-color: $primary-ui-color;
+  -webkit-box-shadow: 0px 0px 0px $outline-width $primary-ui-color;
+  -moz-box-shadow: 0px 0px 0px $outline-width $primary-ui-color;
+  box-shadow: 0px 0px 0px $outline-width $primary-ui-color; 
 
+  &:hover #background {
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+  }
 
+  &:hover #label {
+    color: $primary-ui-color;
+  }
+}
 
+#share-panel-button #background {
+  transition: $share-panel-button-animation-durations;
+  -webkit-transition: $share-panel-button-animation-durations;
+  -webkit-transition-timing-function: $share-panel-button-animation-easing;
+  transition-timing-function: $share-panel-button-animation-easing;
+  background-color: $secondary-ui-color;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0%;
+  height: 0%;
+}
 
+#share-panel-button #label {
+  -webkit-transition-timing-function: $share-panel-button-animation-easing;
+  transition-timing-function: $share-panel-button-animation-easing;
+  transition: $share-panel-button-animation-durations;
+  -webkit-transition: $share-panel-button-animation-durations;
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  color: $secondary-ui-color;
+}
 
+$share-button-animation-durations: all 0.3s;
+$share-button-animation-easing: ease;
 
+.share-button {
+  -webkit-transition-timing-function: $share-button-animation-easing;
+  transition-timing-function: $share-button-animation-easing;
+  transition: $share-button-animation-durations;
+  -webkit-transition: $share-button-animation-durations;
+  display:inline-block;
+  margin: 10px;
+  font-family: "SocialCircles";
+  font-size: 150px;
 
+  &:hover {
+    font-weight: bold;
+  }
+}
 
+.twitter {
+  color: #55acee;
+}
 
+.facebook {
+  color: #3b5998;
+}
 
-
-
-
-
+.google {
+  color: #d34836;
+}
 
 
 
@@ -374,9 +496,12 @@ $triangleWeight: 30px;
   text-align: left;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.nav-fillpath-big {
   width: 200px;
   height: 200px;
-  cursor: pointer;
 }
 
 .nav-fillpath a::before,

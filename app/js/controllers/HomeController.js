@@ -24,9 +24,10 @@ module.exports = function($scope, $state, $timeout, $lololol) {
 		var progress = $(".LLLProgress");
 		percent *= 0.01;
 		new_width = (percent * progress.parent().width())+'px';
-		progress.animate({ width: new_width }, 1000, "linear", function(){
-			var progressBar = $(".LLLProgressBar");
-			progressBar.animate({"opacity": 0}, 1000, "swing", function(){
+		progress.animate({ width: new_width }, 1000, function(){
+			var progressBar = $(".LLLProgressbar");
+			console.log(progressBar);
+			progressBar.animate({"opacity": 0}, 1000, function(){
 				setTimeout(function(){
 					$("#start-button").css({"z-index": 9999});
 					$(".LLLProgressOverlay").animate({ "opacity": 0 }, 3000, function(){
@@ -50,8 +51,9 @@ module.exports = function($scope, $state, $timeout, $lololol) {
 	}
 
 	$scope.$on('$viewContentLoaded', function(event) {
+		event.preventDefault();
 		if($scope.first){
-			$scope.setProgressBar(100)
+			$scope.setProgressBar(100);
 			$scope.first = false;
 		}
 	});	
