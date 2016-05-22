@@ -13,76 +13,7 @@ module.exports = function($scope, $state, $lololol, $window, $stateParams) {
 											autoplay: 0
 										};
 
-	$scope.videos = [{
-		id: "1",
-		title: "Late for meeting",
-		embed: "wBqM2ytqHY4"
-	},
-	{
-		id: "2",
-		title: "Going to the store",
-		embed: "iRZ2Sh5-XuM"
-	},
-	{
-		id: "3",
-		title: "Girl cries like a supercar (original)",
-		embed: "_yH5iyn81Ks"
-	},
-	{
-		id: "4",
-		title: "Wingardium leviosa",
-		embed: "FWtO0cfgewY"
-	}, 
-	{
-		id: "5",
-		title: "Wingardium leviosa 2",
-		embed: "reop2bXiNgk"
-	}, 
-	{
-		id: "6",
-		title: "Thor 'n' loki",
-		embed: "-CNlNYIRw4g"
-	},
-	{
-		id: "7",
-		title: "Dragonzball P (Dragonball Z Parody) - Oney Cartoons",
-		embed: "OYa5aQb3YGE"
-	},
-	{
-		id: "8",
-		title: "Dragonzball PeePee (Dragonball Z Parody Animation) - Oney Cartoons",
-		embed: "7pSmhZFbCy0"
-	},
-	{
-		id: "9",
-		title: "Henry the Hoover's Cocaine Overdose",
-		embed: "CmC62Eg82E8"
-	}, 
-	{
-		id: "10",
-		title: "DJ RAVINE'S BEST LAUNCHPAD COVER EVER - AVICII - LEVELS",
-		embed: "ya7FbdL5Xrk"
-	}, 
-	{
-		id: "11",
-		title: "You're a wizard harry!",
-		embed: "tKNhPpUR0Pg"
-	}, 
-	{
-		id: "12",
-		title: "Odin eating like a person",
-		embed: "4Ri5cszSKEg"
-	}, 
-	{
-		id: "13",
-		title: "Hey ron, hey billy", 
-		embed: "zBJU9ndpH1Q"
-	},
-	{
-		id: "14",
-		title: "Will Sasso - lemons",
-		embed: "T6i5qHHXjz0"
-	}]
+	$scope.videos = $lololol.getVideos();
 
 	$scope.init = function(){
 		$scope.currentVideo = $scope.videos[0];
