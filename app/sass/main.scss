@@ -507,6 +507,9 @@ $share-panel-button-height: 40px;
 .google-plus span {
   background-color: #db5a3c;
 }
+.reddit span {
+  background-color: #cee3f8
+}
 
 /* Icons */
 .icon-button i {
@@ -533,10 +536,14 @@ $share-panel-button-height: 40px;
 .icon-button .icon-google-plus {
   color: #db5a3c;
 }
+.icon-button .icon-reddit {
+  color: #cee3f8;
+}
+
 .icon-button:hover .icon-twitter,
 .icon-button:hover .icon-facebook,
 .icon-button:hover .icon-google-plus {
-  color: white;
+  color: $secondary-ui-color;
 }
 
 

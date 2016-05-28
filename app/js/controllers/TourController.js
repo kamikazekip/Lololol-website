@@ -139,6 +139,12 @@ module.exports = function($scope, $state, $lololol, $window, $stateParams) {
 		}
 	}
 
+	$scope.facebook_click = function(){
+		var url = 'https://www.facebook.com/sharer/sharer.php?app_id=113869198637480&sdk=joey&u=http%3A%2F%2Flololol.io%2F%23%2Ftour%3Fvideo%3D' 
+		+ $scope.currentVideo.id + '&display=popup&ref=plugin&src=share_button'
+		window.open(url,'name','width=600,height=400')
+	}
+
 	$(document).ready(function(){
 		$(document).keydown(function(event){
 			switch(event.keyCode){
