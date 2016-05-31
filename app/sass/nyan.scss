@@ -39,8 +39,7 @@
     .head,
     .eyes,
     .foot,
-    .tail { 
-        
+    .tail {
         width: $px;
         height: $px;
         display: block; 
@@ -729,60 +728,50 @@
     }
     
     .eyes {
-        
         left: $px*4;
         top: $px*6;
         animation: eyes 10s steps(1) infinite;
+        box-shadow: 3px 3px 5px 6px #ccc;
         
     }
     
     .feet {
-        
         z-index: -1;
         animation: feet $nyanspeed steps(1) infinite reverse 0.2s;
-        
+        box-shadow: 3px 3px 5px 6px #ccc;
     }
     
     .foot.one {
-        
         z-index: 3;
         left: $px*20;
         top: $px*15;
-        
         animation: foot1 $nyanspeed steps(1) infinite;
-        
+        box-shadow: 3px 3px 5px 6px #ccc;
     }
     
     .foot.two {
-        
         z-index: 3;
         left: $px*14;
         top: $px*15;
-        
         animation: foot2 $nyanspeed steps(1) infinite;
-        
+        box-shadow: 3px 3px 5px 6px #ccc;
     }
     
     .foot.three {
-        
         z-index: 3;
         left: $px*7;
         top: $px*15;
-        
         animation: foot3 $nyanspeed steps(1) infinite;
-        
+        box-shadow: 3px 3px 5px 6px #ccc;
     }
     
     .foot.four {
-        
         z-index: 3;
         left: $px*1;
         top: $px*15;
-        
         animation: foot4 $nyanspeed steps(1) infinite;
-        
+        box-shadow: 3px 3px 5px 6px #ccc;
     }
-    
 }
 
 
@@ -888,13 +877,6 @@
     }
     
     
-    
-}
-
-
-body, html {
-    
-    min-height: 100%;
     
 }
 
@@ -1874,4 +1856,65 @@ body, html {
         transform: translateX(-$px*30);
         opacity: 0;
     }
+}
+
+.speaker {
+      height: 30px;
+      width: 30px;
+      position: absolute;
+      bottom: 50px;
+      left: 50px;
+      overflow: hidden;
+      display: inline-block;
+      color: #fff;
+      cursor: pointer;
+
+      span {
+            display: block;
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            margin: 11px 0 0 2px;
+
+            &:after {
+                  content: '';
+                  position: absolute;
+                  width: 0;
+                  height: 0;
+                  border-style: solid;
+                  border-color: transparent #fff transparent transparent;
+                  border-width: 10px 14px 10px 15px;
+                  left: -13px;
+                  top: 5px;
+            }
+
+            &:before {
+                  transform: rotate(45deg);
+                  border-radius: 0 50px 0 0;
+                  content: '';
+                  position: absolute;
+                  width: 5px;
+                  height: 5px;
+                  border-style: double;
+                  border-color: #fff;
+                  border-width: 7px 7px 0 0;
+                  left: 18px;
+                  top: 9px;
+                  transition: all 0.2s ease-out;
+            }
+      }
+
+      &:hover {
+
+            span:before {
+                  transform: scale(.8) translate(-3px, 0) rotate(42deg);            
+            }
+      }
+
+      &.mute {
+            span:before {
+                  transform: scale(.5) translate(-15px, 0) rotate(36deg);
+                  opacity: 0;
+            }
+      }
 }

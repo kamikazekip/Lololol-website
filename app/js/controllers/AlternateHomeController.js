@@ -1,6 +1,14 @@
 module.exports = function($scope, $state, $interval, $timeout, $lololol) {
 	$scope.stop;
-	$scope.first = true
+	$scope.stopConsoleNyan;
+	$scope.first 	 	= true
+	$scope.muted	 	= false;
+	$scope.maxVolume 	= 0.1;
+
+	$scope. _nyan = 0;
+	$scope. __nyan = [["+      o     +              o      ","    +             o     +       +  ","o          +                       ","    o  +           +        +      ","+        o     o       +        o  ","-_-_-_-_-_-_-_,------,      o      ","_-_-_-_-_-_-_-|   /\\_/\\            ","-_-_-_-_-_-_-~|__( ^ .^)  +     +  ","_-_-_-_-_-_-_-\"\"  \"\"               ","+      o         o   +       o     ","    +         +                    ","o        o         o      o     +  ","    o           +                  ","+      +     o        o      +     "],
+			["+      o     +              +      ","    o             o     o       +  ","o          +                       ","    +  o           +        o      ","o        o     o       +        o  ","_-_-_-_-_-_-_-,------,      +      ","-_-_-_-_-_-_-_|   /\\_/\\            ","_-_-_-_-_-_-_-|__( ^ .^)  o     +  ","-_-_-_-_-_-_-_ \"\"  \"\"              ","+      +         o   +       o     ","    o         +                    ","+        +         +      +     o  ","    +           o                  ","+      o     o        o      +     "]]
+		
 
 	$scope.$on('$viewContentLoaded', function(event) {
 		event.preventDefault();
@@ -12,6 +20,8 @@ module.exports = function($scope, $state, $interval, $timeout, $lololol) {
 
 		    $timeout(function(){
 		        $(".nahnah")[0].play();
+		        $(".nahnah")[0].volume = $scope.maxVolume;
+		        $scope.mute();
 		    }, 100 );
 
 		    $timeout(function(){
@@ -20,7 +30,6 @@ module.exports = function($scope, $state, $interval, $timeout, $lololol) {
 		    }, 2000 );
 
 		    $scope.stop = $interval(function() {
-		    	console.log("Something");
 		        var rainbow = "rainbow".split("");
 		        var colors = ["#ff1211", "#ffa70e", "#ffff04", "#43ff0d", "#13abff", "#7745ff"];
 
@@ -51,27 +60,30 @@ module.exports = function($scope, $state, $interval, $timeout, $lololol) {
 		        $timeout(function() {
 		            $x.remove();
 		        }, 1500 );
-		            
-		        
 		    }, 150 );
-
-		    var v = true;
-		    $("body").on("click", function() {
-		       
-		        if( v ) {
-		            $(".nahnah")[0].volume = 0;
-		        } else {
-		            $(".nahnah")[0].volume = 1;
-		        }
-		        v = !v;
-		    });
-
-		    
 		}
 	});
 
+	$scope.mute = function(){
+		$(".speaker").toggleClass('mute');
+		$scope.muted = !$scope.muted
+        if( $scope.muted ) {
+            $(".nahnah")[0].volume = 0;
+        } else {
+            $(".nahnah")[0].volume = $scope.maxVolume;
+        }   
+	}
+
 	$scope.startButton = function(){
 		$interval.cancel($scope.stop);
+		$interval.cancel($scope.stopConsoleNyan);
 		$state.go('tour');
 	}
+
+	$scope.nyan = function(){
+		console.clear();
+		console.log($scope.__nyan[$scope._nyan].join("\n"))
+		if($scope._nyan == 0){ $scope._nyan = 1; } else {	$scope._nyan = 0; }	
+	}
+	$scope.stopConsoleNyan = $interval($scope.nyan, 300)
 }

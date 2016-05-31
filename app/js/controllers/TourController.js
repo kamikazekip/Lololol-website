@@ -45,7 +45,6 @@ module.exports = function($scope, $state, $lololol, $window, $stateParams) {
 		if(newTourbarLeft > 0 || tourbar_point_left <= center ){
 			newTourbarLeft = parseInt(tourbar_point.css("border-left-width")) + tourbar_point.width() + 20;
 		}
-		console.log(newTourbarLeft)
 		tourbar.css({"left": newTourbarLeft + "px"});
 	}
 
