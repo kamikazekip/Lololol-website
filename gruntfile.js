@@ -16,9 +16,9 @@ module.exports = function(grunt) {
        expand: true,
        cwd: 'app/',
        src: [ '**/*.html', '**/*.css', '**/*.png', 
-              '**/*.webm', '**/*.mp4', 'lib/**', 
-              '**/*.eot', '**/*.svg', '**/*.ttf',
-              '**/*.woff', '**/*.woff2'],
+              '**/*.gif', '**/*.webm', '**/*.mp4', 
+              'lib/**', '**/*.eot', '**/*.svg', 
+              '**/*.ttf', '**/*.woff', '**/*.woff2'],
        dest: 'dist/',
      }, 
      files: {

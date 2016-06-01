@@ -8,7 +8,7 @@
     $crust: #ffcc99;
     $cat: #999999;
     $cheek: #ff9999;
-
+ 
     $red: #ff1211;
     $orange: #ffa70e;
     $yellow: #ffff04;
@@ -18,6 +18,13 @@
 
     $nyanspeed: 0.4s;
 
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} { @content; }
+    @-moz-keyframes #{$animation-name} { @content; }  
+    @-ms-keyframes #{$animation-name} { @content; }
+    @-o-keyframes #{$animation-name} { @content; }  
+    @keyframes #{$animation-name} { @content; }
+}
 
 .nyancat {
     
@@ -25,13 +32,14 @@
     left: -$px*30;
     top: 50%;
     margin-top: -$px*10;
+    -webkit-transition: transform 6s cubic-bezier(.23,.65,.38,.99);
+    -moz-transition: transform 6s cubic-bezier(.23,.65,.38,.99);
+    -o-transition: transform 6s cubic-bezier(.23,.65,.38,.99);
     transition: transform 6s cubic-bezier(.23,.65,.38,.99);
     z-index: 1;
     
     &.fly {
-        
         transform: translateX(70vw);
-        
     }
     
     .body,
@@ -49,9 +57,12 @@
     
     .body {
         
-        z-index: 1;
-        animation: poptart $nyanspeed steps(1) infinite;
-        
+      z-index: 1;
+      -webkit-animation: poptart $nyanspeed steps(1) infinite;
+      -moz-animation: poptart $nyanspeed steps(1) infinite;
+      -ms-animation: poptart $nyanspeed steps(1) infinite;
+      -o-animation: poptart $nyanspeed steps(1) infinite;
+      animation: poptart $nyanspeed steps(1) infinite;
     }
     
     .poptart {
@@ -500,7 +511,11 @@
         left: $px*13;
         top: $px*5;
         
-        animation: head $nyanspeed steps(1) infinite;
+        -webkit-animation:    head $nyanspeed steps(1) infinite;
+        -moz-animation:       head $nyanspeed steps(1) infinite;
+        -ms-animation:        head $nyanspeed steps(1) infinite;
+        -o-animation:         head $nyanspeed steps(1) infinite;
+        animation:            head $nyanspeed steps(1) infinite;  
         
         box-shadow:
             
@@ -730,53 +745,75 @@
     .eyes {
         left: $px*4;
         top: $px*6;
-        animation: eyes 10s steps(1) infinite;
-        box-shadow: 3px 3px 5px 6px #ccc;
-        
+        -webkit-animation:      eyes 10s steps(1) infinite;
+        -moz-animation:         eyes 10s steps(1) infinite;
+        -ms-animation:          eyes 10s steps(1) infinite;
+        -o-animation:           eyes 10s steps(1) infinite;
+        animation:              eyes 10s steps(1) infinite;
+        box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.0);
     }
     
     .feet {
         z-index: -1;
-        animation: feet $nyanspeed steps(1) infinite reverse 0.2s;
-        box-shadow: 3px 3px 5px 6px #ccc;
+        -webkit-animation:      feet $nyanspeed steps(1) infinite reverse 0.2s;
+        -moz-animation:         feet $nyanspeed steps(1) infinite reverse 0.2s;
+        -ms-animation:          feet $nyanspeed steps(1) infinite reverse 0.2s;
+        -o-animation:           feet $nyanspeed steps(1) infinite reverse 0.2s;
+        animation:              feet $nyanspeed steps(1) infinite reverse 0.2s;
+        box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.0);
     }
     
     .foot.one {
         z-index: 3;
         left: $px*20;
         top: $px*15;
-        animation: foot1 $nyanspeed steps(1) infinite;
-        box-shadow: 3px 3px 5px 6px #ccc;
+        -webkit-animation:      foot1 $nyanspeed steps(1) infinite;
+        -moz-animation:         foot1 $nyanspeed steps(1) infinite;
+        -ms-animation:          foot1 $nyanspeed steps(1) infinite;
+        -o-animation:           foot1 $nyanspeed steps(1) infinite;
+        animation:              foot1 $nyanspeed steps(1) infinite;
+        box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.0);
     }
     
     .foot.two {
         z-index: 3;
         left: $px*14;
         top: $px*15;
-        animation: foot2 $nyanspeed steps(1) infinite;
-        box-shadow: 3px 3px 5px 6px #ccc;
+        -webkit-animation:      foot2 $nyanspeed steps(1) infinite;
+        -moz-animation:         foot2 $nyanspeed steps(1) infinite;
+        -ms-animation:          foot2 $nyanspeed steps(1) infinite;
+        -o-animation:           foot2 $nyanspeed steps(1) infinite;
+        animation:              foot2 $nyanspeed steps(1) infinite;
+        box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.0);
     }
     
     .foot.three {
         z-index: 3;
         left: $px*7;
         top: $px*15;
-        animation: foot3 $nyanspeed steps(1) infinite;
-        box-shadow: 3px 3px 5px 6px #ccc;
+        -webkit-animation:      foot3 $nyanspeed steps(1) infinite;
+        -moz-animation:         foot3 $nyanspeed steps(1) infinite;
+        -ms-animation:          foot3 $nyanspeed steps(1) infinite;
+        -o-animation:           foot3 $nyanspeed steps(1) infinite;
+        animation:              foot3 $nyanspeed steps(1) infinite;
+        box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.0);
     }
     
     .foot.four {
         z-index: 3;
         left: $px*1;
         top: $px*15;
-        animation: foot4 $nyanspeed steps(1) infinite;
-        box-shadow: 3px 3px 5px 6px #ccc;
+        -webkit-animation:      foot4 $nyanspeed steps(1) infinite;
+        -moz-animation:         foot4 $nyanspeed steps(1) infinite;
+        -ms-animation:          foot4 $nyanspeed steps(1) infinite;
+        -o-animation:           foot4 $nyanspeed steps(1) infinite;
+        animation:              foot4 $nyanspeed steps(1) infinite;
+        box-shadow: 3px 3px 5px 6px rgba(0, 0, 0, 0.0);
     }
 }
 
 
 .rainbow {
-    
     font-family: "source code pro";
     font-weight: bold;
     font-size: $font;
@@ -787,7 +824,11 @@
     left: $px*4;
     
     .blast {
-        animation: rainbow $nyanspeed steps(2) infinite;
+        -webkit-animation:      rainbow $nyanspeed steps(2) infinite;
+        -moz-animation:         rainbow $nyanspeed steps(2) infinite;
+        -ms-animation:          rainbow $nyanspeed steps(2) infinite;
+        -o-animation:           rainbow $nyanspeed steps(2) infinite;
+        animation:              rainbow $nyanspeed steps(2) infinite;
         margin-left: -$px*2;
         padding: 0 $px;
         width: $px*13;
@@ -818,13 +859,11 @@
     }
     
     .red {
-       
         top: 0;
         .blast { 
-             color: $red;
+            color: $red;
             background: $red;
         }
-
     }
     
     .orange {
@@ -931,7 +970,7 @@
  
 
 
-@keyframes poptart {
+@include keyframes(poptart) {
     
     0% {
         transform: translateY(-$px);
@@ -942,7 +981,7 @@
     
 }
 
-@keyframes head {
+@include keyframes(head) {
     
     0% {
         transform: translate(-$px,-$px);
@@ -959,7 +998,7 @@
     
 }
 
-@keyframes eyes {
+@include keyframes(eyes) {
     
     0%, 90% {
         
@@ -993,40 +1032,29 @@
     
 }
 
-@keyframes feet {
-        
+@include keyframes(feet) {
     16.7% {
-        
         transform: translateX(-$px*2);
-
     }
     
-    33.3% {
-            
+    33.3% { 
         transform: translateX(-$px*3);
-            
     }
     
     50% {
-        
         transform: translateX(-$px*3);
-        
     }
     
     66.6% {
-
         transform: translateX(-$px*2);
-
     }
     
     83.7% {
-        
         transform: translateX(-$px*1);
-        
     }
 }
 
-@keyframes foot1 {
+@include keyframes(foot1) {
     
     0%, 16.7% {
         
@@ -1395,7 +1423,7 @@
     
 }
 
-@keyframes foot3 {
+@include keyframes(foot3) {
 
     0% {
 
@@ -1543,7 +1571,7 @@
     
 }
 
-@keyframes foot4 {
+@include keyframes(foot4) {
 
     0% {
 
@@ -1619,7 +1647,7 @@
     
 }
 
-@keyframes rainbow {
+@include keyframes(rainbow) {
     
     0% {
         transform: translateY(0);
@@ -1630,16 +1658,11 @@
     
 }
 
-@keyframes explode {
+@include keyframes(explode) {
     
-    0% {
-        
-        transform: translateX(0px);
-            
-        box-shadow: 
-            
-            $px*5 $px*5 0 $red;
-        
+    0% { 
+        transform: translateX(0px);   
+        box-shadow: $px*5 $px*5 0 $red;
     }
     
     10% {
@@ -1841,7 +1864,7 @@
     
 }
 
-@keyframes text {
+@include keyframes(text) {
     0% {
         transform: translateX(0px);
         opacity: 0;
