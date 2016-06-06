@@ -21,7 +21,6 @@ module.exports = function($scope, $state, $interval, $timeout, $lololol) {
 		    $timeout(function(){
 		        $(".nahnah")[0].play();
 		        $(".nahnah")[0].volume = $scope.maxVolume;
-		        $scope.mute();
 		    }, 100 );
 
 		    $timeout(function(){

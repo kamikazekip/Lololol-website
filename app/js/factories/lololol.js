@@ -41,29 +41,25 @@ module.exports = function() {
             embed: "Ur5JnkOg_y4"
         },
         {
-            title: "Caramelldansen!",
-            embed: "PDJLvF1dUek"
-        }, 
-        {
-            title: "Henry the Hoover's Cocaine Overdose!",
-            embed: "CmC62Eg82E8"
-        }, 
-        {
             title: "Shia LaBeouf - JUST DO IT!",
             embed: "ZXsQAXx_ao0"
+        },
+        {
+            title: "Ice cream",
+            embed: "MFT4OgFxfes"
         },
         {
             title: "DJ RAVINE'S BEST LAUNCHPAD COVER EVER - AVICII - LEVELS!",
             embed: "ya7FbdL5Xrk"
         }, 
         {
+            title: "Best death scene!",
+            embed: "BRGTVvOfzjs"
+        },
+        {
             title: "Odin eating like a person!",
             embed: "4Ri5cszSKEg"
         }, 
-        {
-            title: "Hey ron, hey billy!", 
-            embed: "zBJU9ndpH1Q"
-        },
         {
             title: "Ultimate dog tease!",
             embed: "nGeKSiCQkPw"
@@ -73,16 +69,32 @@ module.exports = function() {
             embed: "pug1P-OdtDE"
         },
         {
-            title: "HEYYEYAAEYAAAEYAEYAA",
-            embed: "ZZ5LpwO-An4"
-        },
-        {
             title: "TomSka - HORSE",
             embed: "L46iCN6MBFM"
         },
         {
+            title: "Will Sasso - lemons!",
+            embed: "T6i5qHHXjz0"
+        },
+        {
+            title: "Loituma dance!",
+            embed: "DTSkygD1wR0"
+        },
+        {
+            title: "HEYYEYAAEYAAAEYAEYAA",
+            embed: "ZZ5LpwO-An4"
+        },
+        {
             title: "T-Rex on trampoline!",
             embed: "fN8TDEW_T_0"
+        },
+        {
+            title: "Henry the Hoover's Cocaine Overdose!",
+            embed: "CmC62Eg82E8"
+        }, 
+        {
+            title: "Hey ron, hey billy!", 
+            embed: "zBJU9ndpH1Q"
         },
         {
             title: "Skip Skip Slide (Official Music Video)",
@@ -97,12 +109,16 @@ module.exports = function() {
             embed: "Kppx4bzfAaE"
         },
         {
-            title: "My name is Boxxy!",
-            embed: "EOExl5doR2A"
+            title: "Caramelldansen!",
+            embed: "PDJLvF1dUek"
+        }, 
+        {
+            title: "Thor 'n' Loki",
+            embed: "-CNlNYIRw4g"
         },
         {
-            title: "Best death scene!",
-            embed: "BRGTVvOfzjs"
+            title: "My name is Boxxy!",
+            embed: "EOExl5doR2A"
         },
         {
             title: "Cyanide and happiness Shorts - Junk Mail!",
@@ -119,10 +135,6 @@ module.exports = function() {
         {
             title: "CinemaSins - The Hunger games",
             embed: "pn0LXWaPxnQ"
-        },
-        {
-            title: "Will Sasso - lemons!",
-            embed: "T6i5qHHXjz0"
         },
         {
             title: "Happy Tree Friends - Hide and seek!",
@@ -234,7 +246,7 @@ module.exports = function() {
         }, 
         {
             title: "Risitas y las paelleras",
-            embed: "cDphUib5iG4"
+            embed: "WDiB4rtp1qw"
         }]
 
         var oldMemes = [{
@@ -260,10 +272,6 @@ module.exports = function() {
         {
             title: "TROLOLOLOLOL!",
             embed: "2Z4m4lnjxkY"
-        },
-        {
-            title: "Loituma dance!",
-            embed: "6B8B2PHZzEk"
         },
         {
             title: "Chris Crocker - LEAVE BRITNEY ALONE!",

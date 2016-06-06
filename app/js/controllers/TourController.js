@@ -24,6 +24,15 @@ module.exports = function($scope, $state, $lololol, $window, $stateParams) {
 		} else {
 			$scope.goToVideo($scope.currentVideo);
 		}
+
+		$("#thumbnail").bind({
+		    load: function(){
+		    	console.log("HALLO");
+		    },
+		    error: function() {
+		        console.log('Error thrown, image didn\'t load, probably a 404.');
+		    }
+		});
 	}
 	
 	$scope.select_video = function(video){
@@ -50,13 +59,16 @@ module.exports = function($scope, $state, $lololol, $window, $stateParams) {
 
 	$scope.tourbar_point_hover = function(video){
 		$(".videothumbtitle").html(video.title);
-		$(".videothumbnail").attr("src", "http://img.youtube.com/vi/" + video.embed + "/0.jpg");
-		var tourbar_point 	= $($scope.tourbar_point_selector + video.id);
-		var thumbnail 		= $(".videothumb");
-		var thumbnailWidth  = thumbnail.width();
-		var windowWidth 	= $(window).width();
-		var top 			= tourbar_point.offset().top + 50;
-		var left 			= tourbar_point.offset().left - ( tourbar_point.width() / 2 ) - thumbnail.width() / 2 + 30 - 5;
+		$("#thumbnail").addClass("disabled")
+		$("#thumbnailSpinner").removeClass("disabled");
+		$(".videothumbnail").one("load", $scope.onThumbnailLoaded).attr("src", "http://img.youtube.com/vi/" + video.embed + "/0.jpg");
+		var tourbar_point 		= $($scope.tourbar_point_selector + video.id);
+		var tourbar_point_width = tourbar_point.width() + (parseInt(tourbar_point.css("border-left-width")) * 2)
+		var thumbnail 			= $(".videothumb");
+		var thumbnailWidth  	= thumbnail.width();
+		var windowWidth 		= $(window).width();
+		var top 				= tourbar_point.offset().top + 50;
+		var left 				= tourbar_point.offset().left + ( tourbar_point_width / 2 ) - thumbnail.width() / 2;
 		if(left < 0){
 			left = 10;
 			thumbnail.removeClass("videothumbBorder videothumbBorderRight").addClass("videothumbBorderLeft");
@@ -81,6 +93,11 @@ module.exports = function($scope, $state, $lololol, $window, $stateParams) {
 		});
 	}
 
+	$scope.onThumbnailLoaded = function(){
+		$("#thumbnail").removeClass("disabled")
+		$("#thumbnailSpinner").addClass("disabled");
+	}
+
 	$scope.previous = function(){
 		var index = $scope.videos.indexOf($scope.currentVideo);
 		if(index == 0){
@@ -100,10 +117,10 @@ module.exports = function($scope, $state, $lololol, $window, $stateParams) {
 	}
 
 	$scope.resize = function(){
-		var vpHeight = $($scope.videoDiv).height();
-		var newWidth = Math.floor((vpHeight / 9) * 16);
-		var newLeft = ($(window).width() - newWidth) / 2;
-		$($scope.videoDiv).css({ width: newWidth, left: newLeft });
+		var vpWidth = $($scope.videoDiv).width();
+		var newHeight = Math.floor((vpWidth / 16) * 9);
+		var newTop = ($(window).height() - newHeight) / 2;
+		$($scope.videoDiv).css({ height: newHeight, top: newTop });
 	}
 
 	$scope.positionDots = function(){

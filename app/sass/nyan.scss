@@ -26,6 +26,15 @@
     @keyframes #{$animation-name} { @content; }
 }
 
+.nyancatImage {
+    width: 142px;
+    height: 100px;
+    left: -30px;
+    top: -5px;
+    position: absolute;
+    z-index: 5;
+}
+
 .nyancat {
     
     position: absolute;
@@ -38,8 +47,12 @@
     transition: transform 6s cubic-bezier(.23,.65,.38,.99);
     z-index: 1;
     
+    &.nyancatImage {
+     
+    }
+
     &.fly {
-        transform: translateX(70vw);
+        transform: translateX(75vw);
     }
     
     .body,
