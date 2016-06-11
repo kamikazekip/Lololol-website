@@ -1,64 +1,93 @@
-module.exports = function($scope, $state, $timeout, $lololol) {
-	$scope.first = true;
-	$scope.doneLoading = false
+module.exports = ['$scope', '$state', '$interval', '$timeout', '$lololol', function($scope, $state, $interval, $timeout, $lololol) {
+	$scope.stop; 
+	$scope.stopConsoleNyan;
+	$scope.first 	 	= true
+	$scope.muted	 	= false;
+	$scope.maxVolume 	= 0.1;
 
-	$scope.setProgressBar = function(percent){
-		var progress = $(".LLLProgress");
-		percent *= 0.01;
-		new_width = (percent * progress.parent().width())+'px';
-		progress.stop(true, false)
-		progress.animate({ width: new_width }, 1000, function(){
-			/*if($scope.doneLoading){
-				var progressBar = $(".LLLProgressbar");
-				progressBar.animate({"opacity": 0}, 1000, function(){
-					setTimeout(function(){
-						$("#start-button").css({"z-index": 9999});
-						$(".LLLProgressOverlay").animate({ "opacity": 0 }, 3000, function(){
-							$(".LLLProgressOverlay").css({"z-index": 0});
-						});
-					}, 300);
-				});
-			}*/
-		});
-	}
-
-	this.startButton = function(){
-		$state.go('tour');
-	}
-
-	this.transitionTo = function(newState){
-		$lololol.fadeOut(function(){
-			$state.go(newState);
-		});
-	}
-
-	$scope.loaded = function(){
-		var v = document.getElementById('start-video');
-	    var r = v.buffered;
-	    var total = v.duration;
-	    var neededToStart = 10;
-
-	    var end = r.end(0);
-
-	    var percentage = (end/neededToStart)*100
-	    if(percentage >= 100 && !$scope.doneLoading){
-			$scope.doneLoading = true
-			$scope.setProgressBar(percentage)
-		}
-		if(!$scope.doneLoading){
-			 $scope.setProgressBar(percentage)
-		}
-	}
+	$scope. _nyan = 0;
+	$scope. __nyan = [["+      o     +              o      ","    +             o     +       +  ","o          +                       ","    o  +           +        +      ","+        o     o       +        o  ","-_-_-_-_-_-_-_,------,      o      ","_-_-_-_-_-_-_-|   /\\_/\\            ","-_-_-_-_-_-_-~|__( ^ .^)  +     +  ","_-_-_-_-_-_-_-\"\"  \"\"               ","+      o         o   +       o     ","    +         +                    ","o        o         o      o     +  ","    o           +                  ","+      +     o        o      +     "],
+			["+      o     +              +      ","    o             o     o       +  ","o          +                       ","    +  o           +        o      ","o        o     o       +        o  ","_-_-_-_-_-_-_-,------,      +      ","-_-_-_-_-_-_-_|   /\\_/\\            ","_-_-_-_-_-_-_-|__( ^ .^)  o     +  ","-_-_-_-_-_-_-_ \"\"  \"\"              ","+      +         o   +       o     ","    o         +                    ","+        +         +      +     o  ","    +           o                  ","+      o     o        o      +     "]]
+		
 
 	$scope.$on('$viewContentLoaded', function(event) {
 		event.preventDefault();
-		if($scope.first){
+		if($scope.first == true){
 			$scope.first = false;
 
-			$('#start-video').bind('progress', function() 
-			{
-			    $scope.loaded();
-			});
+			$(".rainbow > *")
+		        .blast({ delimited: "word" });
+
+		    $timeout(function(){
+		        $(".nahnah")[0].play();
+		        $(".nahnah")[0].volume = $scope.maxVolume;
+		    }, 100 );
+
+		    $timeout(function(){
+		        $(".nyancat")
+		            .addClass("fly"); 
+		    }, 2000 );
+
+		    $scope.stop = $interval(function() {
+		        var rainbow = "rainbow".split("");
+		        var colors = ["#ff1211", "#ffa70e", "#ffff04", "#43ff0d", "#13abff", "#7745ff"];
+
+		        var $x = $("<div class=text />");
+		        var $star = $("<div class=star />");
+		        
+		        $star.css({
+		           left: Math.random()*95 + "%",
+		           top: Math.random()*95 + "%"
+		        });
+		        
+		        $x.css({
+		           left: Math.random()*95 + "%",
+		           top: Math.random()*95 + "%"
+		        }).text(function(){
+		            return rainbow[ Math.floor(Math.random() * rainbow.length) ]
+		        }).css({
+		            color: colors[ Math.floor(Math.random()* colors.length ) ]
+		        });
+
+		        $("body")
+		            .append( $star )
+		            .append( $x );
+		        
+		        $timeout(function() {
+		            $star.remove();
+		        }, 1000 );
+		        $timeout(function() {
+		            $x.remove();
+		        }, 1500 );
+		    }, 150 );
 		}
-	});	
-}
+	});
+
+	$scope.mute = function(){
+		$(".speaker").toggleClass('mute');
+		$scope.muted = !$scope.muted
+        if( $scope.muted ) {
+            $(".nahnah")[0].volume = 0;
+        } else {
+            $(".nahnah")[0].volume = $scope.maxVolume;
+        }   
+	}
+
+	$scope.startButton = function(){
+		$timeout(function(){
+			$(".nahnah").animate({volume: 0.0}, $lololol.duration);
+			$("#content").animate({ opacity: 0}, $lololol.duration, $lololol.easing, function(){
+	        	$interval.cancel($scope.stop);
+				$interval.cancel($scope.stopConsoleNyan);
+				$state.go('tour');
+		    });
+		}, 250)
+	}
+
+	$scope.nyan = function(){
+		console.clear();
+		console.log($scope.__nyan[$scope._nyan].join("\n"))
+		if($scope._nyan == 0){ $scope._nyan = 1; } else {	$scope._nyan = 0; }	
+	}
+	$scope.stopConsoleNyan = $interval($scope.nyan, 300)
+}]

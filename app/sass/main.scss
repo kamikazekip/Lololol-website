@@ -597,7 +597,7 @@ $share-panel-button-height: 40px;
 .nav-fillpath .icon-wrap::after {
   z-index: 100;
   height: 0;
-  background: $secondary-ui-color;
+  background: $tertiary-ui-color;;
   -webkit-transition: height 0.3s, -webkit-transform 0.3s;
   transition: height 0.3s, transform 0.3s;
 }
@@ -705,6 +705,10 @@ $share-panel-button-height: 40px;
     width: 95%;
     left: 2.5%;
   }
+  #start-button {
+    left: 30%;
+    width: 40%;
+  }
 }
 
 /*Loader*/
@@ -796,4 +800,13 @@ $share-panel-button-height: 40px;
    transform: rotate(359deg);
  }
 
+}
+
+.DontComeLookingForLogicHere {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-family: $primary-font-family;
+  font-size: 15px;
+  color: $tertiary-ui-color;
 }

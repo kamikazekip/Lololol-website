@@ -1,4 +1,4 @@
-module.exports = function($scope, $state, $lololol, $window, $stateParams) {
+module.exports = ['$scope', '$state', '$lololol', '$window', '$stateParams', '$timeout', function($scope, $state, $lololol, $window, $stateParams, $timeout) {
 	$scope.videoDiv 					= "#mainVPdiv";
 	$scope.tourbar_selector  			= ".tourbar";
 	$scope.tourbar_point_selector 		= "#tourbar-point-";
@@ -10,7 +10,8 @@ module.exports = function($scope, $state, $lololol, $window, $stateParams) {
 	$scope.youtube_options 				= { 	
 											rel: 0, 
 											iv_load_policy: 3,
-											autoplay: 0
+											autoplay: 1
+
 										};
 
 	$scope.videos = $lololol.getVideos();
@@ -24,15 +25,6 @@ module.exports = function($scope, $state, $lololol, $window, $stateParams) {
 		} else {
 			$scope.goToVideo($scope.currentVideo);
 		}
-
-		$("#thumbnail").bind({
-		    load: function(){
-		    	console.log("HALLO");
-		    },
-		    error: function() {
-		        console.log('Error thrown, image didn\'t load, probably a 404.');
-		    }
-		});
 	}
 	
 	$scope.select_video = function(video){
@@ -42,19 +34,6 @@ module.exports = function($scope, $state, $lololol, $window, $stateParams) {
 
 	$scope.goToVideo = function(video){
 		$state.go('tour', { video: video.id });
-	}
-
-	$scope.positionToolbar = function(){
-		var tourbar = $($scope.tourbar_selector);
-		var tourbar_point = $($scope.tourbar_point_selector + $scope.currentVideo.id);
-		var center = $(window).width() / 2;
-		var tourbar_point_left = tourbar_point.position().left
-		var tourbar_point_width = tourbar_point.width() + (parseInt(tourbar_point.css("border-left-width")) * 2)
-		var newTourbarLeft = center - tourbar_point_left - (tourbar_point_width / 2)
-		if(newTourbarLeft > 0 || tourbar_point_left <= center ){
-			newTourbarLeft = parseInt(tourbar_point.css("border-left-width")) + tourbar_point.width() + 20;
-		}
-		tourbar.css({"left": newTourbarLeft + "px"});
 	}
 
 	$scope.tourbar_point_hover = function(video){
@@ -132,10 +111,23 @@ module.exports = function($scope, $state, $lololol, $window, $stateParams) {
 			leftPercentage = index * (100 / ($scope.videos.length - 1));
 			var width = $(this).width();
 			var borderLeftWidth = parseInt($(this).css("border-left-width"));
-			var parentWidth = $(this).parent().width();
+			var parentWidth = newTourbarWidth
 			var newLeft = (parentWidth * (0.01 * leftPercentage)) - (width / 2) - borderLeftWidth;
 		    $(this).css('left', newLeft + 'px');
 		});
+	}
+
+	$scope.positionToolbar = function(){
+		var tourbar = $($scope.tourbar_selector);
+		var tourbar_point = $($scope.tourbar_point_selector + $scope.currentVideo.id);
+		var center = $(window).width() / 2;
+		var tourbar_point_left = tourbar_point.position().left
+		var tourbar_point_width = tourbar_point.width() + (parseInt(tourbar_point.css("border-left-width")) * 2)
+		var newTourbarLeft = center - tourbar_point_left - (tourbar_point_width / 2)
+		if(newTourbarLeft > 0 || tourbar_point_left <= center ){
+			newTourbarLeft = parseInt(tourbar_point.css("border-left-width")) + tourbar_point.width() + 20;
+		}
+		tourbar.css({"left": newTourbarLeft + "px"});
 	}
 
 	$scope.spacebar = function(){
@@ -197,6 +189,7 @@ module.exports = function($scope, $state, $lololol, $window, $stateParams) {
 
   	$scope.$on('youtube.player.ready', function ($event, player) {
   		$scope.positionToolbar();
+  		$("#content").animate({ opacity: 1}, $lololol.duration, $lololol.easing);
   	});	
 
   	$scope.$on('youtube.player.ended', function ($event, player) {
@@ -210,9 +203,10 @@ module.exports = function($scope, $state, $lololol, $window, $stateParams) {
 	angular.element($window).bind('resize', function () {
 		$scope.resize();
 		$scope.positionDots();
-		$scope.positionToolbar();
+		$timeout(function(){
+			$scope.positionToolbar();
+		}, 300);
 	});
 
 	$scope.init();
- 	//$lololol.fadeIn();
-}
+}]

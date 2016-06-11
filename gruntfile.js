@@ -54,6 +54,13 @@ module.exports = function(grunt) {
         }
       }
    },
+   uglify: {
+     my_target: {
+       files: {
+         'dist/js/app.min.js': ['dist/js/app.js']
+       }
+     }
+   },
    clean: {
       build: {
         force: true,
@@ -67,7 +74,7 @@ module.exports = function(grunt) {
     },
    	js: {
        files: "app/**/*.js",
-       tasks: "browserify"
+       tasks: ["browserify", "uglify"]
      },
      html: {
        files: 'app/**/*.html',
@@ -89,7 +96,7 @@ module.exports = function(grunt) {
           openBrowser : true,
           runInBackground: true 
       }
-  },
+  }
  });
  
  // Load the npm installed tasks
@@ -100,10 +107,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-http-server');
 
   // The default tasks to run when you type: grunt
-  grunt.registerTask('default', ['concat', 'browserify', 'sass', 'copy', 'compass', 'http-server', 'watch']);
+  grunt.registerTask('default', ['concat', 'browserify', 'sass', 'copy', 'compass', 'uglify', 'http-server', 'watch']);
 };
 	 
 	 

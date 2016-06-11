@@ -1,32 +1,18 @@
 module.exports = function() {
     
    	var lololol = {};
-    var duration = 1000;
-    var content = "#content";
-    var easing = "easeInOutQuint"
-
-
-    lololol.fadeIn = function(callBack){
-        $(content).animate({ opacity: 1}, duration, easing, callBack);
-    }
-
-    lololol.fadeOut = function(callBack){
-        console.log("HALLO 3");
-		$(content).animate({ opacity: 0}, duration, easing, callBack);
-    }
+    lololol.duration = 1000;
+    lololol.easing = "easeInOutQuint"
 
     lololol.getVideos = function(){
-        var videos = [{
-            title: "Late for meeting!",
-            embed: "wBqM2ytqHY4"
-        },
-        {
-            title: "Going to the store!",
-            embed: "iRZ2Sh5-XuM"
-        },
+        var videos = [
         {
             title: "Girl cries like a supercar (original)!",
             embed: "_yH5iyn81Ks"
+        },
+        {
+            title: "Ice cream",
+            embed: "MFT4OgFxfes"
         },
         {
             title: "Wingardium leviosa!",
@@ -37,16 +23,24 @@ module.exports = function() {
             embed: "reop2bXiNgk"
         },
         {
+            title: "Henry the Hoover's Cocaine Overdose!",
+            embed: "CmC62Eg82E8"
+        }, 
+        {
+            title: "Going to the store!",
+            embed: "iRZ2Sh5-XuM"
+        },
+        {
+            title: "Late for meeting!",
+            embed: "wBqM2ytqHY4"
+        },
+        {
             title: "RAINBOW BUNCHIE!",
             embed: "Ur5JnkOg_y4"
         },
         {
             title: "Shia LaBeouf - JUST DO IT!",
             embed: "ZXsQAXx_ao0"
-        },
-        {
-            title: "Ice cream",
-            embed: "MFT4OgFxfes"
         },
         {
             title: "DJ RAVINE'S BEST LAUNCHPAD COVER EVER - AVICII - LEVELS!",
@@ -89,10 +83,6 @@ module.exports = function() {
             embed: "fN8TDEW_T_0"
         },
         {
-            title: "Henry the Hoover's Cocaine Overdose!",
-            embed: "CmC62Eg82E8"
-        }, 
-        {
             title: "Hey ron, hey billy!", 
             embed: "zBJU9ndpH1Q"
         },
@@ -125,20 +115,8 @@ module.exports = function() {
             embed: "s3zjRcMnRNY"
         },
         {
-            title: "Honest trailers - Frozen",
-            embed: "Zb5IH57SorQ"
-        },
-        {
-            title: "Bad lip reading - The Hunger games",
-            embed: "QjGk_jU6t5A"
-        },
-        {
-            title: "CinemaSins - The Hunger games",
-            embed: "pn0LXWaPxnQ"
-        },
-        {
-            title: "Happy Tree Friends - Hide and seek!",
-            embed: "CLt2E0mOtiE"
+            title: "Happy Tree Friends - Milkin' it!",
+            embed: "Jm1cdzpJQ1Q"
         },
         {
             title: "Charlie the unicorn - part 1!",
@@ -219,6 +197,18 @@ module.exports = function() {
         {
             title: "Awesome series - PokeAwesome - Just a pokemon battle!",
             embed: "rHG-JO8gIGk"
+        },
+        {
+            title: "Honest trailers - Frozen",
+            embed: "Zb5IH57SorQ"
+        },
+        {
+            title: "Bad lip reading - The Hunger games",
+            embed: "QjGk_jU6t5A"
+        },
+        {
+            title: "CinemaSins - The Hunger games",
+            embed: "pn0LXWaPxnQ"
         },
         {
             title: "Gangnam style!",
