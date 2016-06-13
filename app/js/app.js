@@ -34,6 +34,17 @@ app.config(['$sceDelegateProvider', '$locationProvider', '$stateProvider', '$url
     })
 }]);
 
+app.run(['$rootScope', '$location', '$window', function($rootScope, $location, $window) {
+    // initialise google analytics
+    $window.ga('create', 'UA-79217436-1', 'auto');
+
+    // track pageview on state change
+    $rootScope.$on('$stateChangeSuccess', function (event) {
+      console.log($location.path());
+        $window.ga('send', 'pageview', $location.url());
+    });
+}]);
+
 app.directive('onLastRepeat', function() {
     return function(scope, element, attrs) {
         if (scope.$last) setTimeout(function(){

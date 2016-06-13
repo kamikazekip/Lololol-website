@@ -19,25 +19,29 @@ module.exports = function() {
             embed: "FWtO0cfgewY"
         }, 
         {
+            title: "RAINBOW BUNCHIE!",
+            embed: "Ur5JnkOg_y4"
+        },
+        {
             title: "Wingardium leviosa 2!",
             embed: "reop2bXiNgk"
         },
         {
-            title: "Henry the Hoover's Cocaine Overdose!",
-            embed: "CmC62Eg82E8"
-        }, 
-        {
             title: "Going to the store!",
             embed: "iRZ2Sh5-XuM"
+        },
+        {
+            title: "Samwell - What what, in the butt!",
+            embed: "fbGkxcY7YFU"
         },
         {
             title: "Late for meeting!",
             embed: "wBqM2ytqHY4"
         },
         {
-            title: "RAINBOW BUNCHIE!",
-            embed: "Ur5JnkOg_y4"
-        },
+            title: "Henry the Hoover's Cocaine Overdose!",
+            embed: "CmC62Eg82E8"
+        }, 
         {
             title: "Shia LaBeouf - JUST DO IT!",
             embed: "ZXsQAXx_ao0"
@@ -46,10 +50,6 @@ module.exports = function() {
             title: "DJ RAVINE'S BEST LAUNCHPAD COVER EVER - AVICII - LEVELS!",
             embed: "ya7FbdL5Xrk"
         }, 
-        {
-            title: "Best death scene!",
-            embed: "BRGTVvOfzjs"
-        },
         {
             title: "Odin eating like a person!",
             embed: "4Ri5cszSKEg"
@@ -75,6 +75,10 @@ module.exports = function() {
             embed: "DTSkygD1wR0"
         },
         {
+            title: "Best death scene!",
+            embed: "BRGTVvOfzjs"
+        },
+        {
             title: "HEYYEYAAEYAAAEYAEYAA",
             embed: "ZZ5LpwO-An4"
         },
@@ -91,6 +95,9 @@ module.exports = function() {
             embed: "c8jbSoCbnns"
         },
         {
+            title: "Awesome Series - Awesome Reach!"
+        }
+        {
             title: "IceJJFish - On The Floor (Official Music Video)",
             embed: "iq_d8VSM0nw"
         },
@@ -105,10 +112,6 @@ module.exports = function() {
         {
             title: "Thor 'n' Loki",
             embed: "-CNlNYIRw4g"
-        },
-        {
-            title: "My name is Boxxy!",
-            embed: "EOExl5doR2A"
         },
         {
             title: "Cyanide and happiness Shorts - Junk Mail!",
@@ -145,10 +148,6 @@ module.exports = function() {
         {
             title: "GradeAUnderA - Why I hate interviews!",
             embed: "2W0WsdLobq8"
-        },
-        {
-            title: "Samwell - What what, in the butt!",
-            embed: "fbGkxcY7YFU"
         },
         {
             title: "Dumb ways to die!",
@@ -209,6 +208,10 @@ module.exports = function() {
         {
             title: "CinemaSins - The Hunger games",
             embed: "pn0LXWaPxnQ"
+        },
+        {
+            title: "My name is Boxxy!",
+            embed: "EOExl5doR2A"
         },
         {
             title: "Gangnam style!",
