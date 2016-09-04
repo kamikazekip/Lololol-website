@@ -7,6 +7,30 @@ module.exports = function() {
     lololol.getVideos = function(){
         var videos = [
         {
+            title: "Henry the Hoover's Cocaine Overdose!",
+            embed: "CmC62Eg82E8"
+        }, 
+        {
+            title: "Ultimate dog tease!",
+            embed: "nGeKSiCQkPw"
+        },
+        {
+            title: "T-Rex on trampoline!",
+            embed: "fN8TDEW_T_0"
+        },
+        {
+            title: "Hey ron, hey billy!", 
+            embed: "zBJU9ndpH1Q"
+        },
+        {
+            title: "Crazy Football Players Swimming in the mud near Blackpool!",
+            embed: "-l8gX54Ihsk"
+        },
+        {
+            title: "Numa Numa!",
+            embed: "KmtzQCSh6xk"
+        },
+        {
             title: "Girl cries like a supercar (original)!",
             embed: "_yH5iyn81Ks"
         },
@@ -39,10 +63,6 @@ module.exports = function() {
             embed: "wBqM2ytqHY4"
         },
         {
-            title: "Henry the Hoover's Cocaine Overdose!",
-            embed: "CmC62Eg82E8"
-        }, 
-        {
             title: "Shia LaBeouf - JUST DO IT!",
             embed: "ZXsQAXx_ao0"
         },
@@ -53,10 +73,6 @@ module.exports = function() {
         {
             title: "Odin eating like a person!",
             embed: "4Ri5cszSKEg"
-        }, 
-        {
-            title: "Ultimate dog tease!",
-            embed: "nGeKSiCQkPw"
         },
         {
             title: "HowToBasic - How to make a fruit cake",
@@ -83,20 +99,9 @@ module.exports = function() {
             embed: "ZZ5LpwO-An4"
         },
         {
-            title: "T-Rex on trampoline!",
-            embed: "fN8TDEW_T_0"
-        },
-        {
-            title: "Hey ron, hey billy!", 
-            embed: "zBJU9ndpH1Q"
-        },
-        {
             title: "Skip Skip Slide (Official Music Video)",
             embed: "c8jbSoCbnns"
         },
-        {
-            title: "Awesome Series - Awesome Reach!"
-        }
         {
             title: "IceJJFish - On The Floor (Official Music Video)",
             embed: "iq_d8VSM0nw"
@@ -124,10 +129,6 @@ module.exports = function() {
         {
             title: "Charlie the unicorn - part 1!",
             embed: "CsGYh8AacgY"
-        },
-        {
-            title: "Crazy Football Players Swimming in the mud near Blackpool!",
-            embed: "-l8gX54Ihsk"
         },
         {
             title: "asdfmovie5!",
@@ -242,10 +243,7 @@ module.exports = function() {
             embed: "WDiB4rtp1qw"
         }]
 
-        var oldMemes = [{
-            title: "Numa Numa!",
-            embed: "KmtzQCSh6xk"
-        },
+        var oldMemes = [
         {
             title: "Afro ninja!",
             embed: "BEtIoGQxqQs"
@@ -269,6 +267,10 @@ module.exports = function() {
         {
             title: "Chris Crocker - LEAVE BRITNEY ALONE!",
             embed: "lVQOLX1wDAc"
+        },
+        {
+            title: "Awesome series - Awesome Reach!",
+            embed: "sXasCjUTNpE"
         }];
         
         videos.push.apply(videos, oldMemes)
